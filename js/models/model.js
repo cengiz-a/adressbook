@@ -1,13 +1,15 @@
+
 import backbone from 'backbone';
 
 
-const model = backbone.Model.extend( {
-
-     defaults: {
-        name: 'doe',
-        firstName: 'john',
-        email: 'john@doe.com',
-        job: 'dev'
+var model = backbone.Model.extend({
+    defaults: {
+        name: '',
+        firstName: '',
+        email: '',
+        job: ''
     }
 });
-export default model;
+var myModel = new model();
+export default myModel;
+

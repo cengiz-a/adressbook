@@ -7,7 +7,6 @@ var detailView = Marionette.View.extend({
     template: DetailViewTemplate,
 
     initialize() {
-        console.log("detailView initialized");
         this.render();
     },
 });

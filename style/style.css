@@ -12,7 +12,7 @@ body {
 }
 
 #list {
-    width: 15%;
+    width: 25%;
     height: 300px;
     background-color: gold;
     position: relative;
@@ -22,7 +22,7 @@ body {
 }
 
 #details {
-    width: 45%;
+    width: 40%;
     height: 300px;
     background-color: goldenrod;
     position: relative;
@@ -32,7 +32,7 @@ body {
 }
 
 #addNew {
-    width: 25%;
+    width: 20%;
     height: 300px;
     background-color: darkorange;
     position: relative;
@@ -42,6 +42,14 @@ body {
     display: inline;
 }
 
-#addNew input {
+#addNew input{
+    width: 80%;
+    margin: 10px 10px;
+    background-color: azure;
+}
 
+#addNew button{
+    width: 50%;
+    margin: 10px 10px;
+    background-color: lightgrey;
 }

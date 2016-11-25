@@ -24,10 +24,9 @@ var RootView = Marionette.View.extend({
     },
 
     onRender: function() {
-        console.log("Views ausgeführt");
-        this.showChildView('list', new ListView({model: listModel}));
-        this.showChildView('details', new DetailView({model: model}));
-        this.showChildView('addNew', new AddNewView({model: model}));
+        this.showChildView('list', new ListView({model: model.set({itemName: "example"})}));
+        this.showChildView('details', new DetailView({model: model.set({name: "Cengiz", firstName: "Han", email: "a.c.cengizhan@me.com", job: "cool sein" })}));
+        this.showChildView('addNew', new AddNewView({model: listModel}));
     }
 });
 

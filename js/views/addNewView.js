@@ -1,27 +1,59 @@
 import Marionette from 'backbone.marionette';
 import AddingTemplate from '../../templates/addNew.handlebars';
+import model from '../models/model';
 
-const  addNewView = Marionette.View.extend({
+
+
+var  addNewView = Marionette.View.extend({
 
 
     template: AddingTemplate,
 
 
     events: {
-        'click .neuer-kontakt': 'addNew'
+        'input #name': 'changeName',
+        'input #firstName': 'changeFirstName',
+        'input #email': 'changeEmail',
+        'input #job': 'changeJob',
+        'click #add': 'add'
     },
 
-    initialize() {
-        console.log("addView initialized");
+    modelEvents: {
+        'change:name': 'actOnChange',
+        'change:firstName': 'actOnChange',
+        'change:email': 'actOnChange',
+        'change:job': 'actOnChange'
+    },
+
+
+    add: function () {
+        // create new Model and add to list
+    },
+
+    actOnChange: function () {
         this.render();
     },
 
-    addNew: function (e) {
+    initialize() {
+        this.render();
+    },
+
+    changeName: function (e) {
         this.model.set({name: e.target.value});
+    },
+
+    changeFirstName: function (e) {
         this.model.set({firstName: e.target.value});
+    },
+
+    changeEmail: function (e) {
         this.model.set({email: e.target.value});
+    },
+
+    changeJob: function (e) {
         this.model.set({job: e.target.value});
     },
+
 
 
 });

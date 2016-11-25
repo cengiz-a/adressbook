@@ -8,7 +8,6 @@ const App = Marionette.Application.extend({
     region: '#app',
 
     onStart: function() {
-        console.log("started");
         this.showView(new RootView());
     }
 

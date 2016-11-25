@@ -81,7 +81,6 @@
 	    region: '#app',
 
 	    onStart: function onStart() {
-	        console.log("started");
 	        this.showView(new _RootView2.default());
 	    }
 
@@ -17542,10 +17541,9 @@
 	    },
 
 	    onRender: function onRender() {
-	        console.log("Views ausgeführt");
-	        this.showChildView('list', new _listview2.default({ model: _listModel2.default }));
-	        this.showChildView('details', new _detailView2.default({ model: _model2.default }));
-	        this.showChildView('addNew', new _addNewView2.default({ model: _model2.default }));
+	        this.showChildView('list', new _listview2.default({ model: _model2.default.set({ itemName: "example" }) }));
+	        this.showChildView('details', new _detailView2.default({ model: _model2.default.set({ name: "Cengiz", firstName: "Han", email: "a.c.cengizhan@me.com", job: "cool sein" }) }));
+	        this.showChildView('addNew', new _addNewView2.default({ model: _listModel2.default }));
 	    }
 	});
 
@@ -17569,6 +17567,10 @@
 
 	var _addNew2 = _interopRequireDefault(_addNew);
 
+	var _model = __webpack_require__(34);
+
+	var _model2 = _interopRequireDefault(_model);
+
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	var addNewView = _backbone2.default.View.extend({
@@ -17576,19 +17578,46 @@
 	    template: _addNew2.default,
 
 	    events: {
-	        'click .neuer-kontakt': 'addNew'
+	        'input #name': 'changeName',
+	        'input #firstName': 'changeFirstName',
+	        'input #email': 'changeEmail',
+	        'input #job': 'changeJob',
+	        'click #add': 'add'
+	    },
+
+	    modelEvents: {
+	        'change:name': 'actOnChange',
+	        'change:firstName': 'actOnChange',
+	        'change:email': 'actOnChange',
+	        'change:job': 'actOnChange'
+	    },
+
+	    add: function add() {
+	        // create new Model and add to list
+	    },
+
+	    actOnChange: function actOnChange() {
+	        this.render();
 	    },
 
 	    initialize: function initialize() {
-	        console.log("addView initialized");
 	        this.render();
 	    },
 
 
-	    addNew: function addNew(e) {
+	    changeName: function changeName(e) {
 	        this.model.set({ name: e.target.value });
+	    },
+
+	    changeFirstName: function changeFirstName(e) {
 	        this.model.set({ firstName: e.target.value });
+	    },
+
+	    changeEmail: function changeEmail(e) {
 	        this.model.set({ email: e.target.value });
+	    },
+
+	    changeJob: function changeJob(e) {
 	        this.model.set({ job: e.target.value });
 	    }
 
@@ -17605,15 +17634,15 @@
 	module.exports = (Handlebars["default"] || Handlebars).template({"compiler":[7,">= 4.0.0"],"main":function(container,depth0,helpers,partials,data) {
 	    var helper, alias1=depth0 != null ? depth0 : {}, alias2=helpers.helperMissing, alias3="function", alias4=container.escapeExpression;
 
-	  return "\n<input title =\"name\" id=\"name\" type=\"text\" value=\""
+	  return "\n<input title=\"name\" id=\"name\" type=\"text\" value=\""
 	    + alias4(((helper = (helper = helpers.name || (depth0 != null ? depth0.name : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"name","hash":{},"data":data}) : helper)))
-	    + "\">\n<input title =\"firstName\" id=\"firstName\" type=\"text\" value=\""
+	    + "\">\n<input title=\"firstName\" id=\"firstName\" type=\"text\" value=\""
 	    + alias4(((helper = (helper = helpers.firstName || (depth0 != null ? depth0.firstName : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"firstName","hash":{},"data":data}) : helper)))
-	    + "\">\n<input title =\"email\" id=\"email\" type=\"text\" value=\""
+	    + "\">\n<input title=\"email\" id=\"email\" type=\"text\" value=\""
 	    + alias4(((helper = (helper = helpers.email || (depth0 != null ? depth0.email : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"email","hash":{},"data":data}) : helper)))
-	    + "\">\n<input title =\"job\" id=\"job\" type=\"text\" value=\""
+	    + "\">\n<input title=\"job\" id=\"job\" type=\"text\" value=\""
 	    + alias4(((helper = (helper = helpers.job || (depth0 != null ? depth0.job : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"job","hash":{},"data":data}) : helper)))
-	    + "\">\n<button class=\"neuer-kontakt\">Add New</button>\n\n";
+	    + "\">\n<button id=\"add\">Add New</button>\n\n";
 	},"useData":true});
 
 /***/ },
@@ -18816,7 +18845,6 @@
 	    template: _detailList2.default,
 
 	    initialize: function initialize() {
-	        console.log("detailView initialized");
 	        this.render();
 	    }
 	});
@@ -18832,13 +18860,13 @@
 	module.exports = (Handlebars["default"] || Handlebars).template({"compiler":[7,">= 4.0.0"],"main":function(container,depth0,helpers,partials,data) {
 	    var helper, alias1=depth0 != null ? depth0 : {}, alias2=helpers.helperMissing, alias3="function", alias4=container.escapeExpression;
 
-	  return "\n<ul>\n<li id=\"name\">"
+	  return "\n<ul>\n    <p><strong>Name:</strong></p>\n<li id=\"name\">"
 	    + alias4(((helper = (helper = helpers.name || (depth0 != null ? depth0.name : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"name","hash":{},"data":data}) : helper)))
-	    + "</li>\n<li id=\"firstName\">"
+	    + "</li>\n    <p><strong>Vorname:</strong></p>\n<li id=\"firstName\">"
 	    + alias4(((helper = (helper = helpers.firstName || (depth0 != null ? depth0.firstName : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"firstName","hash":{},"data":data}) : helper)))
-	    + "</li>\n<li id=\"email\">"
+	    + "</li>\n    <p><strong>Email:</strong></p>\n<li id=\"email\">"
 	    + alias4(((helper = (helper = helpers.email || (depth0 != null ? depth0.email : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"email","hash":{},"data":data}) : helper)))
-	    + "</li>\n<li id=\"job\">"
+	    + "</li>\n    <p>J<strong>ob:</strong></p>\n<li id=\"job\">"
 	    + alias4(((helper = (helper = helpers.job || (depth0 != null ? depth0.job : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"job","hash":{},"data":data}) : helper)))
 	    + "</li>\n</ul>\n\n\n";
 	},"useData":true});
@@ -18868,7 +18896,6 @@
 	    template: _list2.default,
 
 	    initialize: function initialize() {
-	        console.log("listView initialized");
 	        this.render();
 	    }
 	});
@@ -18884,7 +18911,7 @@
 	module.exports = (Handlebars["default"] || Handlebars).template({"compiler":[7,">= 4.0.0"],"main":function(container,depth0,helpers,partials,data) {
 	    var helper;
 
-	  return "\n\n<ul>\n    <li>"
+	  return "\n\n<ul>\n    <p><strong>Kontaktliste:</strong></p>\n    <li>"
 	    + container.escapeExpression(((helper = (helper = helpers.itemName || (depth0 != null ? depth0.itemName : depth0)) != null ? helper : helpers.helperMissing),(typeof helper === "function" ? helper.call(depth0 != null ? depth0 : {},{"name":"itemName","hash":{},"data":data}) : helper)))
 	    + "</li>\n</ul>\n";
 	},"useData":true});
@@ -18906,7 +18933,7 @@
 	'use strict';
 
 	Object.defineProperty(exports, "__esModule", {
-	   value: true
+	    value: true
 	});
 
 	var _backbone = __webpack_require__(3);
@@ -18916,15 +18943,15 @@
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	var model = _backbone2.default.Model.extend({
-
-	   defaults: {
-	      name: 'doe',
-	      firstName: 'john',
-	      email: 'john@doe.com',
-	      job: 'dev'
-	   }
+	    defaults: {
+	        name: '',
+	        firstName: '',
+	        email: '',
+	        job: ''
+	    }
 	});
-	exports.default = model;
+	var myModel = new model();
+	exports.default = myModel;
 
 /***/ },
 /* 35 */

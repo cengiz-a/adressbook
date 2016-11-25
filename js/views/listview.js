@@ -7,7 +7,6 @@ var listView = Marionette.View.extend({
     template: listViewTemplate,
 
     initialize() {
-        console.log("listView initialized");
         this.render();
     },
 
