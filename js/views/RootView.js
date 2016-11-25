@@ -2,8 +2,15 @@ import Marionette from 'backbone.marionette';
 import AddNewView from './addNewView.js';
 import DetailView from './detailView.js';
 import ListView from './listview.js';
+import rootViewTemplate from '../../templates/rootViewTemplate.handlebars';
+
+var List = new ListView();
+var Details = new DetailView();
+var AddNew = new AddNewView();
 
 var RootView = Marionette.View.extend({
+
+    template: rootViewTemplate,
 
     regions: {
         list: '#list',
@@ -14,9 +21,9 @@ var RootView = Marionette.View.extend({
 
 
     onRender: function() {
-        this.show('list', new ListView());
-        this.show('details', new DetailView());
-        this.show('addNew', new AddNewView());
+        this.show('list', List);
+        this.show('details', Details);
+        this.show('addNew', AddNew);
     }
 });
 

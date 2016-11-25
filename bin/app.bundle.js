@@ -17513,9 +17513,19 @@
 
 	var _listview2 = _interopRequireDefault(_listview);
 
+	var _rootViewTemplate = __webpack_require__(33);
+
+	var _rootViewTemplate2 = _interopRequireDefault(_rootViewTemplate);
+
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+	var List = new _listview2.default();
+	var Details = new _detailView2.default();
+	var AddNew = new _addNewView2.default();
+
 	var RootView = _backbone2.default.View.extend({
+
+	    template: _rootViewTemplate2.default,
 
 	    regions: {
 	        list: '#list',
@@ -17524,9 +17534,9 @@
 	    },
 
 	    onRender: function onRender() {
-	        this.show('list', new _listview2.default());
-	        this.show('details', new _detailView2.default());
-	        this.show('addNew', new _addNewView2.default());
+	        this.show('list', List);
+	        this.show('details', Details);
+	        this.show('addNew', AddNew);
 	    }
 	});
 
@@ -17585,7 +17595,7 @@
 	module.exports = (Handlebars["default"] || Handlebars).template({"compiler":[7,">= 4.0.0"],"main":function(container,depth0,helpers,partials,data) {
 	    var helper, alias1=depth0 != null ? depth0 : {}, alias2=helpers.helperMissing, alias3="function", alias4=container.escapeExpression;
 
-	  return "<div id=\"addNew\">\n<input title =\"name\" id=\"name\" type=\"text\" value=\""
+	  return "\n<input title =\"name\" id=\"name\" type=\"text\" value=\""
 	    + alias4(((helper = (helper = helpers.name || (depth0 != null ? depth0.name : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"name","hash":{},"data":data}) : helper)))
 	    + "\">\n<input title =\"firstName\" id=\"firstName\" type=\"text\" value=\""
 	    + alias4(((helper = (helper = helpers.firstName || (depth0 != null ? depth0.firstName : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"firstName","hash":{},"data":data}) : helper)))
@@ -17593,7 +17603,7 @@
 	    + alias4(((helper = (helper = helpers.email || (depth0 != null ? depth0.email : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"email","hash":{},"data":data}) : helper)))
 	    + "\">\n<input title =\"job\" id=\"job\" type=\"text\" value=\""
 	    + alias4(((helper = (helper = helpers.job || (depth0 != null ? depth0.job : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"job","hash":{},"data":data}) : helper)))
-	    + "\">\n<button class=\"neuer-kontakt\">Add New</button>\n</div>\n";
+	    + "\">\n<button class=\"neuer-kontakt\">Add New</button>\n\n";
 	},"useData":true});
 
 /***/ },
@@ -18808,7 +18818,7 @@
 	module.exports = (Handlebars["default"] || Handlebars).template({"compiler":[7,">= 4.0.0"],"main":function(container,depth0,helpers,partials,data) {
 	    var helper, alias1=depth0 != null ? depth0 : {}, alias2=helpers.helperMissing, alias3="function", alias4=container.escapeExpression;
 
-	  return "<div id=\"details\">\n<ul>\n<li id=\"name\">"
+	  return "\n<ul>\n<li id=\"name\">"
 	    + alias4(((helper = (helper = helpers.name || (depth0 != null ? depth0.name : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"name","hash":{},"data":data}) : helper)))
 	    + "</li>\n<li id=\"firstName\">"
 	    + alias4(((helper = (helper = helpers.firstName || (depth0 != null ? depth0.firstName : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"firstName","hash":{},"data":data}) : helper)))
@@ -18816,7 +18826,7 @@
 	    + alias4(((helper = (helper = helpers.email || (depth0 != null ? depth0.email : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"email","hash":{},"data":data}) : helper)))
 	    + "</li>\n<li id=\"job\">"
 	    + alias4(((helper = (helper = helpers.job || (depth0 != null ? depth0.job : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"job","hash":{},"data":data}) : helper)))
-	    + "</li>\n</ul>\n</div>\n\n";
+	    + "</li>\n</ul>\n\n\n";
 	},"useData":true});
 
 /***/ },
@@ -18856,9 +18866,19 @@
 	module.exports = (Handlebars["default"] || Handlebars).template({"compiler":[7,">= 4.0.0"],"main":function(container,depth0,helpers,partials,data) {
 	    var helper;
 
-	  return "\n<div id=\"list\">\n<ul>\n    <li>"
+	  return "\n\n<ul>\n    <li>"
 	    + container.escapeExpression(((helper = (helper = helpers.itemName || (depth0 != null ? depth0.itemName : depth0)) != null ? helper : helpers.helperMissing),(typeof helper === "function" ? helper.call(depth0 != null ? depth0 : {},{"name":"itemName","hash":{},"data":data}) : helper)))
-	    + "</li>\n</ul>\n</div>";
+	    + "</li>\n</ul>\n";
+	},"useData":true});
+
+/***/ },
+/* 33 */
+/***/ function(module, exports, __webpack_require__) {
+
+	var Handlebars = __webpack_require__(10);
+	function __default(obj) { return obj && (obj.__esModule ? obj["default"] : obj); }
+	module.exports = (Handlebars["default"] || Handlebars).template({"compiler":[7,">= 4.0.0"],"main":function(container,depth0,helpers,partials,data) {
+	    return "<div id=\"rooView\">\n<div id=\"list\"></div>\n<div id=\"addNew\"></div>\n<div id=\"details\"></div>\n</div>";
 	},"useData":true});
 
 /***/ }
