@@ -1,16 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="16a840fd-bc5b-49f1-9b65-3b5b5a204bf7" name="Default" comment="gitignore">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/templates/rootViewTemplate.handlebars" />
+    <list default="true" id="16a840fd-bc5b-49f1-9b65-3b5b5a204bf7" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/app.bundle.js" afterPath="$PROJECT_DIR$/bin/app.bundle.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/initialize.js" afterPath="$PROJECT_DIR$/initialize.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/js/components/app.js" afterPath="$PROJECT_DIR$/js/components/app.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/js/views/RootView.js" afterPath="$PROJECT_DIR$/js/views/RootView.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/addNew.handlebars" afterPath="$PROJECT_DIR$/templates/addNew.handlebars" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/detail-list.handlebars" afterPath="$PROJECT_DIR$/templates/detail-list.handlebars" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/list.handlebars" afterPath="$PROJECT_DIR$/templates/list.handlebars" />
     </list>
     <ignored path="adressbuch.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -468,7 +460,7 @@
       <workItem from="1478761562049" duration="21176000" />
       <workItem from="1478858238119" duration="11545000" />
       <workItem from="1479971321975" duration="21713000" />
-      <workItem from="1480063862841" duration="9559000" />
+      <workItem from="1480063862841" duration="9601000" />
     </task>
     <task id="LOCAL-00001" summary="gitignore">
       <created>1480066605604</created>
@@ -477,11 +469,18 @@
       <option name="project" value="LOCAL" />
       <updated>1480066605604</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="templates bearbeitet und hinzugefügt">
+      <created>1480075914004</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1480075914004</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="68928000" />
+    <option name="totallyTimeSpent" value="68970000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -563,7 +562,8 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="gitignore" />
-    <option name="LAST_COMMIT_MESSAGE" value="gitignore" />
+    <MESSAGE value="templates bearbeitet und hinzugefügt" />
+    <option name="LAST_COMMIT_MESSAGE" value="templates bearbeitet und hinzugefügt" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
