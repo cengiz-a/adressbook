@@ -1,12 +1,47 @@
 
 body {
+    margin-top: 100px;
     background-color: lightgrey;
 }
 
 #app {
-    width: 500px;
-    height: 500px;
-    background-color: darkgrey;
+    width: 70%;
+    height: 300px;
     margin: auto;
     border-radius: 3%;
+}
+
+#list {
+    width: 15%;
+    height: 300px;
+    background-color: gold;
+    position: relative;
+    float: left;
+    border-radius: 3%;
+    margin: 10px 10px 10px 5px;
+}
+
+#details {
+    width: 45%;
+    height: 300px;
+    background-color: goldenrod;
+    position: relative;
+    float: left;
+    border-radius: 3%;
+    margin: 10px 10px 10px 5px;
+}
+
+#addNew {
+    width: 25%;
+    height: 300px;
+    background-color: darkorange;
+    position: relative;
+    float: left;
+    border-radius: 3%;
+    margin: 10px 10px 10px 5px;
+    display: inline;
+}
+
+#addNew input {
+
 }

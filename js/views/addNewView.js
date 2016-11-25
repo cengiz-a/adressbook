@@ -1,7 +1,6 @@
 import Marionette from 'backbone.marionette';
 import AddingTemplate from '../../templates/addNew.handlebars';
 
-
 const  addNewView = Marionette.View.extend({
 
 
@@ -13,6 +12,7 @@ const  addNewView = Marionette.View.extend({
     },
 
     initialize() {
+        console.log("addView initialized");
         this.render();
     },
 
@@ -25,6 +25,10 @@ const  addNewView = Marionette.View.extend({
 
 
 });
+
+
+
+
 
 export default addNewView;
 

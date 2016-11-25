@@ -3,10 +3,11 @@ import AddNewView from './addNewView.js';
 import DetailView from './detailView.js';
 import ListView from './listview.js';
 import rootViewTemplate from '../../templates/rootViewTemplate.handlebars';
+import listModel from '../models/listModel';
+import model from '../models/model';
 
-var List = new ListView();
-var Details = new DetailView();
-var AddNew = new AddNewView();
+
+
 
 var RootView = Marionette.View.extend({
 
@@ -18,13 +19,18 @@ var RootView = Marionette.View.extend({
         addNew: '#addNew'
     },
 
-
+    initialize: function () {
+        this.render();
+    },
 
     onRender: function() {
-        this.show('list', List);
-        this.show('details', Details);
-        this.show('addNew', AddNew);
+        console.log("Views ausgeführt");
+        this.showChildView('list', new ListView({model: listModel}));
+        this.showChildView('details', new DetailView({model: model}));
+        this.showChildView('addNew', new AddNewView({model: model}));
     }
 });
+
+
 
 export default RootView;
