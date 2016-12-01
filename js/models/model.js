@@ -10,6 +10,7 @@ var model = backbone.Model.extend({
         job: ''
     }
 });
+
 var myModel = new model();
 export default myModel;
 

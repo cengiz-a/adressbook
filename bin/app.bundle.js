@@ -17504,25 +17504,29 @@
 
 	var _addNewView2 = _interopRequireDefault(_addNewView);
 
-	var _detailView = __webpack_require__(29);
+	var _detailView = __webpack_require__(30);
 
 	var _detailView2 = _interopRequireDefault(_detailView);
 
-	var _listview = __webpack_require__(31);
+	var _listview = __webpack_require__(32);
 
 	var _listview2 = _interopRequireDefault(_listview);
 
-	var _rootViewTemplate = __webpack_require__(33);
+	var _rootViewTemplate = __webpack_require__(35);
 
 	var _rootViewTemplate2 = _interopRequireDefault(_rootViewTemplate);
 
-	var _listModel = __webpack_require__(35);
+	var _listModel = __webpack_require__(36);
 
 	var _listModel2 = _interopRequireDefault(_listModel);
 
-	var _model = __webpack_require__(34);
+	var _model = __webpack_require__(29);
 
 	var _model2 = _interopRequireDefault(_model);
+
+	var _collection = __webpack_require__(37);
+
+	var _collection2 = _interopRequireDefault(_collection);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -17541,7 +17545,9 @@
 	    },
 
 	    onRender: function onRender() {
-	        this.showChildView('list', new _listview2.default({ model: _model2.default.set({ itemName: "example" }) }));
+
+	        // old  this.showChildView('list', new ListView({model: model.set({itemName: "example"})}));
+	        this.showChildView('list', new _listview2.default({ collection: _collection2.default }));
 	        this.showChildView('details', new _detailView2.default({ model: _model2.default.set({ name: "Cengiz", firstName: "Han", email: "a.c.cengizhan@me.com", job: "cool sein" }) }));
 	        this.showChildView('addNew', new _addNewView2.default({ model: _listModel2.default }));
 	    }
@@ -17567,7 +17573,7 @@
 
 	var _addNew2 = _interopRequireDefault(_addNew);
 
-	var _model = __webpack_require__(34);
+	var _model = __webpack_require__(29);
 
 	var _model2 = _interopRequireDefault(_model);
 
@@ -18830,11 +18836,39 @@
 	    value: true
 	});
 
+	var _backbone = __webpack_require__(3);
+
+	var _backbone2 = _interopRequireDefault(_backbone);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	var model = _backbone2.default.Model.extend({
+	    defaults: {
+	        name: '',
+	        firstName: '',
+	        email: '',
+	        job: ''
+	    }
+	});
+
+	var myModel = new model();
+	exports.default = myModel;
+
+/***/ },
+/* 30 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+
 	var _backbone = __webpack_require__(2);
 
 	var _backbone2 = _interopRequireDefault(_backbone);
 
-	var _detailList = __webpack_require__(30);
+	var _detailList = __webpack_require__(31);
 
 	var _detailList2 = _interopRequireDefault(_detailList);
 
@@ -18852,7 +18886,7 @@
 	exports.default = detailView;
 
 /***/ },
-/* 30 */
+/* 31 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var Handlebars = __webpack_require__(10);
@@ -18872,7 +18906,7 @@
 	},"useData":true});
 
 /***/ },
-/* 31 */
+/* 32 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -18885,15 +18919,23 @@
 
 	var _backbone2 = _interopRequireDefault(_backbone);
 
-	var _list = __webpack_require__(32);
+	var _list = __webpack_require__(33);
 
 	var _list2 = _interopRequireDefault(_list);
 
+	var _ListItemView = __webpack_require__(34);
+
+	var _ListItemView2 = _interopRequireDefault(_ListItemView);
+
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-	var listView = _backbone2.default.View.extend({
+	var listView = _backbone2.default.CollectionView.extend({
 
 	    template: _list2.default,
+
+	    //new
+
+	    childView: _ListItemView2.default,
 
 	    initialize: function initialize() {
 	        this.render();
@@ -18903,7 +18945,7 @@
 	exports.default = listView;
 
 /***/ },
-/* 32 */
+/* 33 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var Handlebars = __webpack_require__(10);
@@ -18917,16 +18959,6 @@
 	},"useData":true});
 
 /***/ },
-/* 33 */
-/***/ function(module, exports, __webpack_require__) {
-
-	var Handlebars = __webpack_require__(10);
-	function __default(obj) { return obj && (obj.__esModule ? obj["default"] : obj); }
-	module.exports = (Handlebars["default"] || Handlebars).template({"compiler":[7,">= 4.0.0"],"main":function(container,depth0,helpers,partials,data) {
-	    return "\n<div id=\"list\"></div>\n<div id=\"details\"></div>\n<div id=\"addNew\"></div>\n";
-	},"useData":true});
-
-/***/ },
 /* 34 */
 /***/ function(module, exports, __webpack_require__) {
 
@@ -18936,25 +18968,36 @@
 	    value: true
 	});
 
-	var _backbone = __webpack_require__(3);
+	var _backbone = __webpack_require__(2);
 
 	var _backbone2 = _interopRequireDefault(_backbone);
 
+	var _list = __webpack_require__(33);
+
+	var _list2 = _interopRequireDefault(_list);
+
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-	var model = _backbone2.default.Model.extend({
-	    defaults: {
-	        name: '',
-	        firstName: '',
-	        email: '',
-	        job: ''
-	    }
+	var ListItemView = _backbone2.default.View.extend({
+	    tagName: 'li',
+	    region: _list2.default
+
 	});
-	var myModel = new model();
-	exports.default = myModel;
+
+	exports.default = ListItemView;
 
 /***/ },
 /* 35 */
+/***/ function(module, exports, __webpack_require__) {
+
+	var Handlebars = __webpack_require__(10);
+	function __default(obj) { return obj && (obj.__esModule ? obj["default"] : obj); }
+	module.exports = (Handlebars["default"] || Handlebars).template({"compiler":[7,">= 4.0.0"],"main":function(container,depth0,helpers,partials,data) {
+	    return "\n<div id=\"list\"></div>\n<div id=\"details\"></div>\n<div id=\"addNew\"></div>\n";
+	},"useData":true});
+
+/***/ },
+/* 36 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -18975,7 +19018,37 @@
 	    }
 	});
 
-	exports.default = listModel;
+	var listmodel = new listModel();
+
+	exports.default = listmodel;
+
+/***/ },
+/* 37 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+
+	var _backbone = __webpack_require__(3);
+
+	var _backbone2 = _interopRequireDefault(_backbone);
+
+	var _model = __webpack_require__(29);
+
+	var _model2 = _interopRequireDefault(_model);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	var list = _backbone2.default.Collection.extend({
+
+	    model: _model2.default
+
+	});
+
+	exports.default = list;
 
 /***/ }
 /******/ ]);

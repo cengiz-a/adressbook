@@ -1,6 +1,7 @@
 import Marionette from 'backbone.marionette';
 import AddingTemplate from '../../templates/addNew.handlebars';
 import model from '../models/model';
+import list from '../collections/collection';
 
 
 
@@ -28,6 +29,8 @@ var  addNewView = Marionette.View.extend({
 
     add: function () {
         // create new Model and add to list
+
+        list.add({model: list});
     },
 
     actOnChange: function () {

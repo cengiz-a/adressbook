@@ -6,4 +6,6 @@ var listModel = backbone.Model.extend({
     }
 });
 
-export default listModel;
+var listmodel = new listModel();
+
+export default listmodel;
