@@ -13,7 +13,7 @@ var ListItemView = Marionette.View.extend({
     },
 
     onRender() {
-        this.show(model.get({name}));
+
     }
 });
 

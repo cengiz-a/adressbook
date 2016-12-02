@@ -7,12 +7,26 @@ import listModel from '../models/listModel';
 import model from '../models/model';
 import List from '../collections/collection';
 
+
+
 var collectionList = new List([
-    {name: 'Cengiz',
-    firstName: 'Han',
-    email: 'a.c.cengizhan@me.com',
-    job: 'Keeping Calm'}
+   /*{
+        id: 0,
+        name: 'Cengiz',
+        firstName: 'Han',
+        email: 'a.c.cengizhan@me.com',
+        job: 'Keeping Calm',
+    },
+
+    {
+        id: 2,
+        name: 'Peter',
+        firstName: 'Maffffai',
+        email: 'a.c.cengizhan@me.com',
+        job: 'Keeping Calm',
+    }*/
 ]);
+
 
 
 var RootView = Marionette.View.extend({
@@ -20,7 +34,7 @@ var RootView = Marionette.View.extend({
     template: rootViewTemplate,
 
     regions: {
-        list: '#list',
+        list: '#list > .listing',
         details: '#details',
         addNew: '#addNew'
     },
@@ -30,8 +44,8 @@ var RootView = Marionette.View.extend({
     },
 
     onRender: function() {
-
-        // old  this.showChildView('list', new ListView({model: model.set({itemName: "example"})}));
+        console.log(collectionList);
+        //this.showChildView('list', new ListView({model: model.set({itemName: "example"})}));
         this.showChildView('list', new ListView({collection: collectionList}));
         this.showChildView('details', new DetailView({model: model.set({name: "Cengiz", firstName: "Han", email: "a.c.cengizhan@me.com", job: "cool sein" })}));
         this.showChildView('addNew', new AddNewView({model: listModel}));

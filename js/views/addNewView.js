@@ -28,9 +28,7 @@ var  addNewView = Marionette.View.extend({
 
 
     add: function () {
-        // create new Model and add to list
-
-        list.add({model: list});
+        console.log("Running!");
     },
 
     actOnChange: function () {

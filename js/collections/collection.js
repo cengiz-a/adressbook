@@ -7,4 +7,5 @@ var list = backbone.Collection.extend ({
 
 });
 
+
 export default list;

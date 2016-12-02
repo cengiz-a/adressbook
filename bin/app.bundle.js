@@ -17530,17 +17530,29 @@
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-	var collectionList = new _collection2.default([{ name: 'Cengiz',
-	    firstName: 'Han',
-	    email: 'a.c.cengizhan@me.com',
-	    job: 'Keeping Calm' }]);
+	var collectionList = new _collection2.default([
+	    /*{
+	         id: 0,
+	         name: 'Cengiz',
+	         firstName: 'Han',
+	         email: 'a.c.cengizhan@me.com',
+	         job: 'Keeping Calm',
+	     },
+	      {
+	         id: 2,
+	         name: 'Peter',
+	         firstName: 'Maffffai',
+	         email: 'a.c.cengizhan@me.com',
+	         job: 'Keeping Calm',
+	     }*/
+	]);
 
 	var RootView = _backbone2.default.View.extend({
 
 	    template: _rootViewTemplate2.default,
 
 	    regions: {
-	        list: '#list',
+	        list: '#list > .listing',
 	        details: '#details',
 	        addNew: '#addNew'
 	    },
@@ -17550,8 +17562,8 @@
 	    },
 
 	    onRender: function onRender() {
-
-	        // old  this.showChildView('list', new ListView({model: model.set({itemName: "example"})}));
+	        console.log(collectionList);
+	        //this.showChildView('list', new ListView({model: model.set({itemName: "example"})}));
 	        this.showChildView('list', new _listview2.default({ collection: collectionList }));
 	        this.showChildView('details', new _detailView2.default({ model: _model2.default.set({ name: "Cengiz", firstName: "Han", email: "a.c.cengizhan@me.com", job: "cool sein" }) }));
 	        this.showChildView('addNew', new _addNewView2.default({ model: _listModel2.default }));
@@ -17608,9 +17620,7 @@
 	    },
 
 	    add: function add() {
-	        // create new Model and add to list
-
-	        _collection2.default.add({ model: _collection2.default });
+	        console.log("Running!");
 	    },
 
 	    actOnChange: function actOnChange() {
@@ -18855,11 +18865,14 @@
 
 	var model = _backbone2.default.Model.extend({
 	    defaults: {
+	        id: 0,
 	        name: '',
 	        firstName: '',
 	        email: '',
 	        job: ''
+
 	    }
+
 	});
 
 	var myModel = new model();
@@ -18966,11 +18979,16 @@
 
 	var _ListItemView2 = _interopRequireDefault(_ListItemView);
 
+	var _collection = __webpack_require__(30);
+
+	var _collection2 = _interopRequireDefault(_collection);
+
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	var listView = _backbone2.default.CollectionView.extend({
 
-	    template: _list2.default,
+	    tagName: 'ul',
+	    className: 'list',
 
 	    childView: _ListItemView2.default,
 
@@ -19027,9 +19045,7 @@
 	    initialize: function initialize() {
 	        this.render();
 	    },
-	    onRender: function onRender() {
-	        this.show(_model2.default.get({ name: name }));
-	    }
+	    onRender: function onRender() {}
 	});
 
 	exports.default = ListItemView;
@@ -19041,9 +19057,11 @@
 	var Handlebars = __webpack_require__(10);
 	function __default(obj) { return obj && (obj.__esModule ? obj["default"] : obj); }
 	module.exports = (Handlebars["default"] || Handlebars).template({"compiler":[7,">= 4.0.0"],"main":function(container,depth0,helpers,partials,data) {
-	    var helper;
+	    var helper, alias1=depth0 != null ? depth0 : {}, alias2=helpers.helperMissing, alias3="function", alias4=container.escapeExpression;
 
-	  return container.escapeExpression(((helper = (helper = helpers.item || (depth0 != null ? depth0.item : depth0)) != null ? helper : helpers.helperMissing),(typeof helper === "function" ? helper.call(depth0 != null ? depth0 : {},{"name":"item","hash":{},"data":data}) : helper)));
+	  return alias4(((helper = (helper = helpers.name || (depth0 != null ? depth0.name : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"name","hash":{},"data":data}) : helper)))
+	    + ", "
+	    + alias4(((helper = (helper = helpers.firstName || (depth0 != null ? depth0.firstName : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"firstName","hash":{},"data":data}) : helper)));
 	},"useData":true});
 
 /***/ },
@@ -19053,7 +19071,7 @@
 	var Handlebars = __webpack_require__(10);
 	function __default(obj) { return obj && (obj.__esModule ? obj["default"] : obj); }
 	module.exports = (Handlebars["default"] || Handlebars).template({"compiler":[7,">= 4.0.0"],"main":function(container,depth0,helpers,partials,data) {
-	    return "\n<div id=\"list\"></div>\n<div id=\"details\"></div>\n<div id=\"addNew\"></div>\n";
+	    return "\n<div id=\"list\">\n    <h4>Ueberschrift</h4>\n    <div class=\"listing\"></div>\n</div>\n<div id=\"details\"></div>\n<div id=\"addNew\"></div>\n";
 	},"useData":true});
 
 /***/ },
