@@ -3,7 +3,7 @@ import model from '../models/model.js';
 
 var list = backbone.Collection.extend ({
 
-    model: model,
+    model: model
 
 });
 

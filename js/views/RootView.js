@@ -5,9 +5,14 @@ import ListView from './listview.js';
 import rootViewTemplate from '../../templates/rootViewTemplate.handlebars';
 import listModel from '../models/listModel';
 import model from '../models/model';
-import list from '../collections/collection';
+import List from '../collections/collection';
 
-
+var collectionList = new List([
+    {name: 'Cengiz',
+    firstName: 'Han',
+    email: 'a.c.cengizhan@me.com',
+    job: 'Keeping Calm'}
+]);
 
 
 var RootView = Marionette.View.extend({
@@ -27,7 +32,7 @@ var RootView = Marionette.View.extend({
     onRender: function() {
 
         // old  this.showChildView('list', new ListView({model: model.set({itemName: "example"})}));
-        this.showChildView('list', new ListView({collection: list}));
+        this.showChildView('list', new ListView({collection: collectionList}));
         this.showChildView('details', new DetailView({model: model.set({name: "Cengiz", firstName: "Han", email: "a.c.cengizhan@me.com", job: "cool sein" })}));
         this.showChildView('addNew', new AddNewView({model: listModel}));
     }

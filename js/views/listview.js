@@ -7,8 +7,6 @@ var listView = Marionette.CollectionView.extend({
 
     template: listViewTemplate,
 
-    //new
-
     childView: ListItemView,
 
     initialize() {
