@@ -1,7 +1,6 @@
 import Marionette from 'backbone.marionette';
-import  listViewTemplate from '../../templates/list.handlebars';
-import ListItem from '../../templates/ListItem.handlebars';
-import model from '../models/model';
+import  listViewTemplate from '../../templates/ListItem.handlebars';
+
 
 var ListItemView = Marionette.View.extend({
 
@@ -12,9 +11,6 @@ var ListItemView = Marionette.View.extend({
         this.render();
     },
 
-    onRender() {
-
-    }
 });
 
 export default ListItemView;

@@ -2,20 +2,17 @@
 import backbone from 'backbone';
 
 
-var model = backbone.Model.extend({
-    defaults: {
-        id: 0,
+const myModel = backbone.Model.extend({
+    default: {
+        id: '',
         name: '',
         firstName: '',
         email: '',
         job: '',
-
     }
-
-
 });
 
 
-var myModel = new model();
+
 export default myModel;
 

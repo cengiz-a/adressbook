@@ -1,7 +1,7 @@
 import Marionette from 'backbone.marionette';
 import AddingTemplate from '../../templates/addNew.handlebars';
-import model from '../models/model';
 import list from '../collections/collection';
+import collectionView from './listview';
 
 
 
@@ -29,6 +29,7 @@ var  addNewView = Marionette.View.extend({
 
     add: function () {
         console.log("Running!");
+        collectionView.collection.add({name: 'Cengiz'});
     },
 
     actOnChange: function () {
@@ -37,22 +38,23 @@ var  addNewView = Marionette.View.extend({
 
     initialize() {
         this.render();
+        collectionView.collection.add({name: 'Cengiz'});
     },
 
     changeName: function (e) {
-        this.model.set({name: e.target.value});
+
     },
 
     changeFirstName: function (e) {
-        this.model.set({firstName: e.target.value});
+
     },
 
     changeEmail: function (e) {
-        this.model.set({email: e.target.value});
+
     },
 
     changeJob: function (e) {
-        this.model.set({job: e.target.value});
+
     },
 
 
