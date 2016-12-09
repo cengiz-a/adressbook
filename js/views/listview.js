@@ -6,24 +6,7 @@ import List from '../collections/collection';
 
 
 
-var collectionList = new List(/*[
-    {
-     id: "12",
-     name: 'Cengiz',
-     firstName: 'Han',
-     email: 'a.c.cengizhan@me.com',
-     job: 'Keeping Calm',
-     },
-
-     {
-     id: "1",
-     name: 'Peter',
-     firstName: 'Mann',
-     email: 'a.c.cengizhan@me.com',
-     job: 'Keeping Calm',
-     }
-]*/);
-
+var collectionList = new List();
 
 
 var listView = Marionette.CollectionView.extend({

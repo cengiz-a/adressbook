@@ -17504,15 +17504,15 @@
 
 	var _addNewView2 = _interopRequireDefault(_addNewView);
 
-	var _detailView = __webpack_require__(12);
+	var _detailView = __webpack_require__(34);
 
 	var _detailView2 = _interopRequireDefault(_detailView);
 
-	var _listview = __webpack_require__(14);
+	var _listview = __webpack_require__(29);
 
 	var _listview2 = _interopRequireDefault(_listview);
 
-	var _rootViewTemplate = __webpack_require__(17);
+	var _rootViewTemplate = __webpack_require__(36);
 
 	var _rootViewTemplate2 = _interopRequireDefault(_rootViewTemplate);
 
@@ -17560,15 +17560,22 @@
 
 	var _addNew2 = _interopRequireDefault(_addNew);
 
-	var _collection = __webpack_require__(11);
-
-	var _collection2 = _interopRequireDefault(_collection);
-
-	var _listview = __webpack_require__(14);
+	var _listview = __webpack_require__(29);
 
 	var _listview2 = _interopRequireDefault(_listview);
 
+	var _model = __webpack_require__(33);
+
+	var _model2 = _interopRequireDefault(_model);
+
+	var _jquery = __webpack_require__(5);
+
+	var _jquery2 = _interopRequireDefault(_jquery);
+
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	var List = new _listview2.default();
+	var ListModel = new _model2.default();
 
 	var addNewView = _backbone2.default.View.extend({
 
@@ -17581,36 +17588,32 @@
 	        'input #job': 'changeJob',
 	        'click #add': 'add'
 	    },
+	    /*
+	        modelEvents: {
+	            'change:name': 'actOnChange',
+	            'change:firstName': 'actOnChange',
+	            'change:email': 'actOnChange',
+	            'change:job': 'actOnChange'
+	        },*/
 
-	    modelEvents: {
-	        'change:name': 'actOnChange',
-	        'change:firstName': 'actOnChange',
-	        'change:email': 'actOnChange',
-	        'change:job': 'actOnChange'
+	    add: function add(e) {
+	        e.preventDefault();
+	        List.collection.add(ListModel);
+	        console.log(e.target.form);
+
+	        ListModel.set({ firstName: (0, _jquery2.default)('#firstName') });
+	        ListModel.set({ name: e.target.value });
+	        ListModel.set({ email: e.target.value });
+	        ListModel.set({ job: e.target.value });
 	    },
 
-	    add: function add() {
-	        console.log("Running!");
-	        _listview2.default.collection.add({ name: 'Cengiz' });
-	    },
-
-	    actOnChange: function actOnChange() {
+	    /*actOnChange: function () {
 	        this.render();
-	    },
+	    },*/
 
 	    initialize: function initialize() {
 	        this.render();
-	    },
-
-
-	    changeName: function changeName(e) {},
-
-	    changeFirstName: function changeFirstName(e) {},
-
-	    changeEmail: function changeEmail(e) {},
-
-	    changeJob: function changeJob(e) {}
-
+	    }
 	});
 
 	exports.default = addNewView;
@@ -17619,238 +17622,33 @@
 /* 9 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var Handlebars = __webpack_require__(18);
+	var Handlebars = __webpack_require__(10);
 	function __default(obj) { return obj && (obj.__esModule ? obj["default"] : obj); }
 	module.exports = (Handlebars["default"] || Handlebars).template({"compiler":[7,">= 4.0.0"],"main":function(container,depth0,helpers,partials,data) {
 	    var helper, alias1=depth0 != null ? depth0 : {}, alias2=helpers.helperMissing, alias3="function", alias4=container.escapeExpression;
 
-	  return "\n<input title=\"name\" id=\"name\" type=\"text\" value=\""
-	    + alias4(((helper = (helper = helpers.name || (depth0 != null ? depth0.name : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"name","hash":{},"data":data}) : helper)))
-	    + "\">\n<input title=\"firstName\" id=\"firstName\" type=\"text\" value=\""
+	  return "<form id=\"form\">\n<input title=\"firstName\" id=\"firstName\" type=\"text\" value=\""
 	    + alias4(((helper = (helper = helpers.firstName || (depth0 != null ? depth0.firstName : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"firstName","hash":{},"data":data}) : helper)))
+	    + "\">\n<input title=\"name\" id=\"name\" type=\"text\" value=\""
+	    + alias4(((helper = (helper = helpers.name || (depth0 != null ? depth0.name : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"name","hash":{},"data":data}) : helper)))
 	    + "\">\n<input title=\"email\" id=\"email\" type=\"text\" value=\""
 	    + alias4(((helper = (helper = helpers.email || (depth0 != null ? depth0.email : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"email","hash":{},"data":data}) : helper)))
 	    + "\">\n<input title=\"job\" id=\"job\" type=\"text\" value=\""
 	    + alias4(((helper = (helper = helpers.job || (depth0 != null ? depth0.job : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"job","hash":{},"data":data}) : helper)))
-	    + "\">\n<button id=\"add\">Add New</button>\n\n";
+	    + "\">\n</form>\n<button form=\"form\" value=\"Submit\" id=\"add\">Add New</button>\n\n";
 	},"useData":true});
 
 /***/ },
 /* 10 */
 /***/ function(module, exports, __webpack_require__) {
 
-	'use strict';
+	// Create a simple path alias to allow browserify to resolve
+	// the runtime on a supported path.
+	module.exports = __webpack_require__(11)['default'];
 
-	Object.defineProperty(exports, "__esModule", {
-	    value: true
-	});
-
-	var _backbone = __webpack_require__(3);
-
-	var _backbone2 = _interopRequireDefault(_backbone);
-
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-	var myModel = _backbone2.default.Model.extend({
-	    default: {
-	        id: '',
-	        name: '',
-	        firstName: '',
-	        email: '',
-	        job: ''
-	    }
-	});
-
-	exports.default = myModel;
 
 /***/ },
 /* 11 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	Object.defineProperty(exports, "__esModule", {
-	    value: true
-	});
-
-	var _backbone = __webpack_require__(3);
-
-	var _backbone2 = _interopRequireDefault(_backbone);
-
-	var _model = __webpack_require__(10);
-
-	var _model2 = _interopRequireDefault(_model);
-
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-	var list = _backbone2.default.Collection.extend({
-
-	    model: _model2.default
-
-	});
-
-	exports.default = list;
-
-/***/ },
-/* 12 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	Object.defineProperty(exports, "__esModule", {
-	    value: true
-	});
-
-	var _backbone = __webpack_require__(2);
-
-	var _backbone2 = _interopRequireDefault(_backbone);
-
-	var _detailList = __webpack_require__(13);
-
-	var _detailList2 = _interopRequireDefault(_detailList);
-
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-	var detailView = _backbone2.default.View.extend({
-
-	    template: _detailList2.default,
-
-	    initialize: function initialize() {
-	        this.render();
-	    }
-	});
-
-	exports.default = detailView;
-
-/***/ },
-/* 13 */
-/***/ function(module, exports, __webpack_require__) {
-
-	var Handlebars = __webpack_require__(18);
-	function __default(obj) { return obj && (obj.__esModule ? obj["default"] : obj); }
-	module.exports = (Handlebars["default"] || Handlebars).template({"compiler":[7,">= 4.0.0"],"main":function(container,depth0,helpers,partials,data) {
-	    var helper, alias1=depth0 != null ? depth0 : {}, alias2=helpers.helperMissing, alias3="function", alias4=container.escapeExpression;
-
-	  return "\n<ul>\n    <p><strong>Name:</strong></p>\n<li id=\"name\">"
-	    + alias4(((helper = (helper = helpers.name || (depth0 != null ? depth0.name : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"name","hash":{},"data":data}) : helper)))
-	    + "</li>\n    <p><strong>Vorname:</strong></p>\n<li id=\"firstName\">"
-	    + alias4(((helper = (helper = helpers.firstName || (depth0 != null ? depth0.firstName : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"firstName","hash":{},"data":data}) : helper)))
-	    + "</li>\n    <p><strong>Email:</strong></p>\n<li id=\"email\">"
-	    + alias4(((helper = (helper = helpers.email || (depth0 != null ? depth0.email : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"email","hash":{},"data":data}) : helper)))
-	    + "</li>\n    <p>J<strong>ob:</strong></p>\n<li id=\"job\">"
-	    + alias4(((helper = (helper = helpers.job || (depth0 != null ? depth0.job : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"job","hash":{},"data":data}) : helper)))
-	    + "</li>\n</ul>\n\n\n";
-	},"useData":true});
-
-/***/ },
-/* 14 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	Object.defineProperty(exports, "__esModule", {
-	    value: true
-	});
-
-	var _backbone = __webpack_require__(2);
-
-	var _backbone2 = _interopRequireDefault(_backbone);
-
-	var _ListItemView = __webpack_require__(15);
-
-	var _ListItemView2 = _interopRequireDefault(_ListItemView);
-
-	var _collection = __webpack_require__(11);
-
-	var _collection2 = _interopRequireDefault(_collection);
-
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-	var collectionList = new _collection2.default();
-
-	var listView = _backbone2.default.CollectionView.extend({
-
-	    tagName: 'ul',
-	    className: 'list',
-
-	    collection: collectionList,
-
-	    childView: _ListItemView2.default,
-
-	    initialize: function initialize() {
-	        this.render();
-	    }
-	});
-
-	exports.default = listView;
-
-/***/ },
-/* 15 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	Object.defineProperty(exports, "__esModule", {
-	    value: true
-	});
-
-	var _backbone = __webpack_require__(2);
-
-	var _backbone2 = _interopRequireDefault(_backbone);
-
-	var _ListItem = __webpack_require__(16);
-
-	var _ListItem2 = _interopRequireDefault(_ListItem);
-
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-	var ListItemView = _backbone2.default.View.extend({
-
-	    tagName: 'li',
-	    template: _ListItem2.default,
-
-	    initialize: function initialize() {
-	        this.render();
-	    }
-	});
-
-	exports.default = ListItemView;
-
-/***/ },
-/* 16 */
-/***/ function(module, exports, __webpack_require__) {
-
-	var Handlebars = __webpack_require__(18);
-	function __default(obj) { return obj && (obj.__esModule ? obj["default"] : obj); }
-	module.exports = (Handlebars["default"] || Handlebars).template({"compiler":[7,">= 4.0.0"],"main":function(container,depth0,helpers,partials,data) {
-	    var helper, alias1=depth0 != null ? depth0 : {}, alias2=helpers.helperMissing, alias3="function", alias4=container.escapeExpression;
-
-	  return alias4(((helper = (helper = helpers.name || (depth0 != null ? depth0.name : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"name","hash":{},"data":data}) : helper)))
-	    + ", "
-	    + alias4(((helper = (helper = helpers.firstName || (depth0 != null ? depth0.firstName : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"firstName","hash":{},"data":data}) : helper)));
-	},"useData":true});
-
-/***/ },
-/* 17 */
-/***/ function(module, exports, __webpack_require__) {
-
-	var Handlebars = __webpack_require__(18);
-	function __default(obj) { return obj && (obj.__esModule ? obj["default"] : obj); }
-	module.exports = (Handlebars["default"] || Handlebars).template({"compiler":[7,">= 4.0.0"],"main":function(container,depth0,helpers,partials,data) {
-	    return "\n<div id=\"list\">\n    <h4>Kontakte</h4>\n    <div class=\"listing\"></div>\n</div>\n<div id=\"details\"></div>\n<div id=\"addNew\"></div>\n";
-	},"useData":true});
-
-/***/ },
-/* 18 */
-/***/ function(module, exports, __webpack_require__) {
-
-	// Create a simple path alias to allow browserify to resolve
-	// the runtime on a supported path.
-	module.exports = __webpack_require__(19)['default'];
-
-
-/***/ },
-/* 19 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -17864,30 +17662,30 @@
 
 	function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj['default'] = obj; return newObj; } }
 
-	var _handlebarsBase = __webpack_require__(20);
+	var _handlebarsBase = __webpack_require__(12);
 
 	var base = _interopRequireWildcard(_handlebarsBase);
 
 	// Each of these augment the Handlebars object. No need to setup here.
 	// (This is done to easily share code between commonjs and browse envs)
 
-	var _handlebarsSafeString = __webpack_require__(34);
+	var _handlebarsSafeString = __webpack_require__(26);
 
 	var _handlebarsSafeString2 = _interopRequireDefault(_handlebarsSafeString);
 
-	var _handlebarsException = __webpack_require__(22);
+	var _handlebarsException = __webpack_require__(14);
 
 	var _handlebarsException2 = _interopRequireDefault(_handlebarsException);
 
-	var _handlebarsUtils = __webpack_require__(21);
+	var _handlebarsUtils = __webpack_require__(13);
 
 	var Utils = _interopRequireWildcard(_handlebarsUtils);
 
-	var _handlebarsRuntime = __webpack_require__(35);
+	var _handlebarsRuntime = __webpack_require__(27);
 
 	var runtime = _interopRequireWildcard(_handlebarsRuntime);
 
-	var _handlebarsNoConflict = __webpack_require__(36);
+	var _handlebarsNoConflict = __webpack_require__(28);
 
 	var _handlebarsNoConflict2 = _interopRequireDefault(_handlebarsNoConflict);
 
@@ -17922,7 +17720,7 @@
 
 
 /***/ },
-/* 20 */
+/* 12 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -17933,17 +17731,17 @@
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
 
-	var _utils = __webpack_require__(21);
+	var _utils = __webpack_require__(13);
 
-	var _exception = __webpack_require__(22);
+	var _exception = __webpack_require__(14);
 
 	var _exception2 = _interopRequireDefault(_exception);
 
-	var _helpers = __webpack_require__(23);
+	var _helpers = __webpack_require__(15);
 
-	var _decorators = __webpack_require__(31);
+	var _decorators = __webpack_require__(23);
 
-	var _logger = __webpack_require__(33);
+	var _logger = __webpack_require__(25);
 
 	var _logger2 = _interopRequireDefault(_logger);
 
@@ -18032,7 +17830,7 @@
 
 
 /***/ },
-/* 21 */
+/* 13 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -18162,7 +17960,7 @@
 
 
 /***/ },
-/* 22 */
+/* 14 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -18208,7 +18006,7 @@
 
 
 /***/ },
-/* 23 */
+/* 15 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -18219,31 +18017,31 @@
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
 
-	var _helpersBlockHelperMissing = __webpack_require__(24);
+	var _helpersBlockHelperMissing = __webpack_require__(16);
 
 	var _helpersBlockHelperMissing2 = _interopRequireDefault(_helpersBlockHelperMissing);
 
-	var _helpersEach = __webpack_require__(25);
+	var _helpersEach = __webpack_require__(17);
 
 	var _helpersEach2 = _interopRequireDefault(_helpersEach);
 
-	var _helpersHelperMissing = __webpack_require__(26);
+	var _helpersHelperMissing = __webpack_require__(18);
 
 	var _helpersHelperMissing2 = _interopRequireDefault(_helpersHelperMissing);
 
-	var _helpersIf = __webpack_require__(27);
+	var _helpersIf = __webpack_require__(19);
 
 	var _helpersIf2 = _interopRequireDefault(_helpersIf);
 
-	var _helpersLog = __webpack_require__(28);
+	var _helpersLog = __webpack_require__(20);
 
 	var _helpersLog2 = _interopRequireDefault(_helpersLog);
 
-	var _helpersLookup = __webpack_require__(29);
+	var _helpersLookup = __webpack_require__(21);
 
 	var _helpersLookup2 = _interopRequireDefault(_helpersLookup);
 
-	var _helpersWith = __webpack_require__(30);
+	var _helpersWith = __webpack_require__(22);
 
 	var _helpersWith2 = _interopRequireDefault(_helpersWith);
 
@@ -18260,14 +18058,14 @@
 
 
 /***/ },
-/* 24 */
+/* 16 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 
 	exports.__esModule = true;
 
-	var _utils = __webpack_require__(21);
+	var _utils = __webpack_require__(13);
 
 	exports['default'] = function (instance) {
 	  instance.registerHelper('blockHelperMissing', function (context, options) {
@@ -18305,7 +18103,7 @@
 
 
 /***/ },
-/* 25 */
+/* 17 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -18315,9 +18113,9 @@
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
 
-	var _utils = __webpack_require__(21);
+	var _utils = __webpack_require__(13);
 
-	var _exception = __webpack_require__(22);
+	var _exception = __webpack_require__(14);
 
 	var _exception2 = _interopRequireDefault(_exception);
 
@@ -18405,7 +18203,7 @@
 
 
 /***/ },
-/* 26 */
+/* 18 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -18415,7 +18213,7 @@
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
 
-	var _exception = __webpack_require__(22);
+	var _exception = __webpack_require__(14);
 
 	var _exception2 = _interopRequireDefault(_exception);
 
@@ -18436,14 +18234,14 @@
 
 
 /***/ },
-/* 27 */
+/* 19 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 
 	exports.__esModule = true;
 
-	var _utils = __webpack_require__(21);
+	var _utils = __webpack_require__(13);
 
 	exports['default'] = function (instance) {
 	  instance.registerHelper('if', function (conditional, options) {
@@ -18471,7 +18269,7 @@
 
 
 /***/ },
-/* 28 */
+/* 20 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -18503,7 +18301,7 @@
 
 
 /***/ },
-/* 29 */
+/* 21 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -18521,14 +18319,14 @@
 
 
 /***/ },
-/* 30 */
+/* 22 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 
 	exports.__esModule = true;
 
-	var _utils = __webpack_require__(21);
+	var _utils = __webpack_require__(13);
 
 	exports['default'] = function (instance) {
 	  instance.registerHelper('with', function (context, options) {
@@ -18560,7 +18358,7 @@
 
 
 /***/ },
-/* 31 */
+/* 23 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -18571,7 +18369,7 @@
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
 
-	var _decoratorsInline = __webpack_require__(32);
+	var _decoratorsInline = __webpack_require__(24);
 
 	var _decoratorsInline2 = _interopRequireDefault(_decoratorsInline);
 
@@ -18582,14 +18380,14 @@
 
 
 /***/ },
-/* 32 */
+/* 24 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 
 	exports.__esModule = true;
 
-	var _utils = __webpack_require__(21);
+	var _utils = __webpack_require__(13);
 
 	exports['default'] = function (instance) {
 	  instance.registerDecorator('inline', function (fn, props, container, options) {
@@ -18617,14 +18415,14 @@
 
 
 /***/ },
-/* 33 */
+/* 25 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 
 	exports.__esModule = true;
 
-	var _utils = __webpack_require__(21);
+	var _utils = __webpack_require__(13);
 
 	var logger = {
 	  methodMap: ['debug', 'info', 'warn', 'error'],
@@ -18670,7 +18468,7 @@
 
 
 /***/ },
-/* 34 */
+/* 26 */
 /***/ function(module, exports) {
 
 	// Build out our basic SafeString type
@@ -18691,7 +18489,7 @@
 
 
 /***/ },
-/* 35 */
+/* 27 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -18711,15 +18509,15 @@
 
 	function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj['default'] = obj; return newObj; } }
 
-	var _utils = __webpack_require__(21);
+	var _utils = __webpack_require__(13);
 
 	var Utils = _interopRequireWildcard(_utils);
 
-	var _exception = __webpack_require__(22);
+	var _exception = __webpack_require__(14);
 
 	var _exception2 = _interopRequireDefault(_exception);
 
-	var _base = __webpack_require__(20);
+	var _base = __webpack_require__(12);
 
 	function checkRevision(compilerInfo) {
 	  var compilerRevision = compilerInfo && compilerInfo[0] || 1,
@@ -18989,7 +18787,7 @@
 
 
 /***/ },
-/* 36 */
+/* 28 */
 /***/ function(module, exports) {
 
 	/* WEBPACK VAR INJECTION */(function(global) {/* global window */
@@ -19014,6 +18812,210 @@
 	//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi4uLy4uLy4uL2xpYi9oYW5kbGViYXJzL25vLWNvbmZsaWN0LmpzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiI7Ozs7O3FCQUNlLFVBQVMsVUFBVSxFQUFFOztBQUVsQyxNQUFJLElBQUksR0FBRyxPQUFPLE1BQU0sS0FBSyxXQUFXLEdBQUcsTUFBTSxHQUFHLE1BQU07TUFDdEQsV0FBVyxHQUFHLElBQUksQ0FBQyxVQUFVLENBQUM7O0FBRWxDLFlBQVUsQ0FBQyxVQUFVLEdBQUcsWUFBVztBQUNqQyxRQUFJLElBQUksQ0FBQyxVQUFVLEtBQUssVUFBVSxFQUFFO0FBQ2xDLFVBQUksQ0FBQyxVQUFVLEdBQUcsV0FBVyxDQUFDO0tBQy9CO0FBQ0QsV0FBTyxVQUFVLENBQUM7R0FDbkIsQ0FBQztDQUNIIiwiZmlsZSI6Im5vLWNvbmZsaWN0LmpzIiwic291cmNlc0NvbnRlbnQiOlsiLyogZ2xvYmFsIHdpbmRvdyAqL1xuZXhwb3J0IGRlZmF1bHQgZnVuY3Rpb24oSGFuZGxlYmFycykge1xuICAvKiBpc3RhbmJ1bCBpZ25vcmUgbmV4dCAqL1xuICBsZXQgcm9vdCA9IHR5cGVvZiBnbG9iYWwgIT09ICd1bmRlZmluZWQnID8gZ2xvYmFsIDogd2luZG93LFxuICAgICAgJEhhbmRsZWJhcnMgPSByb290LkhhbmRsZWJhcnM7XG4gIC8qIGlzdGFuYnVsIGlnbm9yZSBuZXh0ICovXG4gIEhhbmRsZWJhcnMubm9Db25mbGljdCA9IGZ1bmN0aW9uKCkge1xuICAgIGlmIChyb290LkhhbmRsZWJhcnMgPT09IEhhbmRsZWJhcnMpIHtcbiAgICAgIHJvb3QuSGFuZGxlYmFycyA9ICRIYW5kbGViYXJzO1xuICAgIH1cbiAgICByZXR1cm4gSGFuZGxlYmFycztcbiAgfTtcbn1cbiJdfQ==
 
 	/* WEBPACK VAR INJECTION */}.call(exports, (function() { return this; }())))
+
+/***/ },
+/* 29 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+
+	var _backbone = __webpack_require__(2);
+
+	var _backbone2 = _interopRequireDefault(_backbone);
+
+	var _ListItemView = __webpack_require__(30);
+
+	var _ListItemView2 = _interopRequireDefault(_ListItemView);
+
+	var _collection = __webpack_require__(32);
+
+	var _collection2 = _interopRequireDefault(_collection);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	var collectionList = new _collection2.default();
+
+	var listView = _backbone2.default.CollectionView.extend({
+
+	    tagName: 'ul',
+	    className: 'list',
+
+	    collection: collectionList,
+
+	    childView: _ListItemView2.default,
+
+	    initialize: function initialize() {
+	        this.render();
+	    }
+	});
+
+	exports.default = listView;
+
+/***/ },
+/* 30 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+
+	var _backbone = __webpack_require__(2);
+
+	var _backbone2 = _interopRequireDefault(_backbone);
+
+	var _ListItem = __webpack_require__(31);
+
+	var _ListItem2 = _interopRequireDefault(_ListItem);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	var ListItemView = _backbone2.default.View.extend({
+
+	    tagName: 'li',
+	    template: _ListItem2.default,
+
+	    initialize: function initialize() {
+	        this.render();
+	    }
+	});
+
+	exports.default = ListItemView;
+
+/***/ },
+/* 31 */
+/***/ function(module, exports, __webpack_require__) {
+
+	var Handlebars = __webpack_require__(10);
+	function __default(obj) { return obj && (obj.__esModule ? obj["default"] : obj); }
+	module.exports = (Handlebars["default"] || Handlebars).template({"compiler":[7,">= 4.0.0"],"main":function(container,depth0,helpers,partials,data) {
+	    var helper, alias1=depth0 != null ? depth0 : {}, alias2=helpers.helperMissing, alias3="function", alias4=container.escapeExpression;
+
+	  return alias4(((helper = (helper = helpers.firstName || (depth0 != null ? depth0.firstName : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"firstName","hash":{},"data":data}) : helper)))
+	    + " "
+	    + alias4(((helper = (helper = helpers.name || (depth0 != null ? depth0.name : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"name","hash":{},"data":data}) : helper)));
+	},"useData":true});
+
+/***/ },
+/* 32 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+
+	var _backbone = __webpack_require__(3);
+
+	var _backbone2 = _interopRequireDefault(_backbone);
+
+	var _model = __webpack_require__(33);
+
+	var _model2 = _interopRequireDefault(_model);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	var list = _backbone2.default.Collection.extend({
+
+	    model: _model2.default
+
+	});
+
+	exports.default = list;
+
+/***/ },
+/* 33 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+
+	var _backbone = __webpack_require__(3);
+
+	var _backbone2 = _interopRequireDefault(_backbone);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	var myModel = _backbone2.default.Model.extend({
+	    default: {
+	        firstName: '',
+	        name: '',
+	        email: '',
+	        job: ''
+	    }
+	});
+
+	exports.default = myModel;
+
+/***/ },
+/* 34 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+
+	var _backbone = __webpack_require__(2);
+
+	var _backbone2 = _interopRequireDefault(_backbone);
+
+	var _detailList = __webpack_require__(35);
+
+	var _detailList2 = _interopRequireDefault(_detailList);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	var detailView = _backbone2.default.View.extend({
+
+	    template: _detailList2.default,
+
+	    initialize: function initialize() {
+	        this.render();
+	    }
+	});
+
+	exports.default = detailView;
+
+/***/ },
+/* 35 */
+/***/ function(module, exports, __webpack_require__) {
+
+	var Handlebars = __webpack_require__(10);
+	function __default(obj) { return obj && (obj.__esModule ? obj["default"] : obj); }
+	module.exports = (Handlebars["default"] || Handlebars).template({"compiler":[7,">= 4.0.0"],"main":function(container,depth0,helpers,partials,data) {
+	    var helper, alias1=depth0 != null ? depth0 : {}, alias2=helpers.helperMissing, alias3="function", alias4=container.escapeExpression;
+
+	  return "\n<ul>\n    <p><strong>Name:</strong></p>\n<li id=\"name\">"
+	    + alias4(((helper = (helper = helpers.name || (depth0 != null ? depth0.name : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"name","hash":{},"data":data}) : helper)))
+	    + "</li>\n    <p><strong>Vorname:</strong></p>\n<li id=\"firstName\">"
+	    + alias4(((helper = (helper = helpers.firstName || (depth0 != null ? depth0.firstName : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"firstName","hash":{},"data":data}) : helper)))
+	    + "</li>\n    <p><strong>Email:</strong></p>\n<li id=\"email\">"
+	    + alias4(((helper = (helper = helpers.email || (depth0 != null ? depth0.email : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"email","hash":{},"data":data}) : helper)))
+	    + "</li>\n    <p>J<strong>ob:</strong></p>\n<li id=\"job\">"
+	    + alias4(((helper = (helper = helpers.job || (depth0 != null ? depth0.job : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"job","hash":{},"data":data}) : helper)))
+	    + "</li>\n</ul>\n\n\n";
+	},"useData":true});
+
+/***/ },
+/* 36 */
+/***/ function(module, exports, __webpack_require__) {
+
+	var Handlebars = __webpack_require__(10);
+	function __default(obj) { return obj && (obj.__esModule ? obj["default"] : obj); }
+	module.exports = (Handlebars["default"] || Handlebars).template({"compiler":[7,">= 4.0.0"],"main":function(container,depth0,helpers,partials,data) {
+	    return "\n<div id=\"list\">\n    <h4>Kontakte</h4>\n    <div class=\"listing\"></div>\n</div>\n<div id=\"details\"></div>\n<div id=\"addNew\"></div>\n";
+	},"useData":true});
 
 /***/ }
 /******/ ]);
