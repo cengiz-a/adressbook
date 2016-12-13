@@ -17560,22 +17560,15 @@
 
 	var _addNew2 = _interopRequireDefault(_addNew);
 
-	var _listview = __webpack_require__(29);
-
-	var _listview2 = _interopRequireDefault(_listview);
-
 	var _model = __webpack_require__(33);
 
 	var _model2 = _interopRequireDefault(_model);
 
-	var _jquery = __webpack_require__(5);
+	var _CollectionView = __webpack_require__(37);
 
-	var _jquery2 = _interopRequireDefault(_jquery);
+	var _CollectionView2 = _interopRequireDefault(_CollectionView);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-	var List = new _listview2.default();
-	var ListModel = new _model2.default();
 
 	var addNewView = _backbone2.default.View.extend({
 
@@ -17610,16 +17603,16 @@
 
 	        var input = document.getElementById('form');
 
-	        var firstName = this.getUI('firstName');
+	        var name = this.getUI('name');
 
 	        model.set({ firstName: e.target.form[0].value });
 	        model.set({ name: e.target.form[1].value });
 	        model.set({ email: e.target.form[2].value });
 	        model.set({ job: e.target.form[3].value });
 
-	        console.log(firstName);
+	        console.log(name);
 
-	        List.collection.add(model);
+	        _CollectionView2.default.collection.add(model);
 
 	        input.reset();
 	    },
@@ -18890,6 +18883,10 @@
 
 	var _ListItem2 = _interopRequireDefault(_ListItem);
 
+	var _detailView = __webpack_require__(34);
+
+	var _detailView2 = _interopRequireDefault(_detailView);
+
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	var ListItemView = _backbone2.default.View.extend({
@@ -18913,9 +18910,11 @@
 	module.exports = (Handlebars["default"] || Handlebars).template({"compiler":[7,">= 4.0.0"],"main":function(container,depth0,helpers,partials,data) {
 	    var helper, alias1=depth0 != null ? depth0 : {}, alias2=helpers.helperMissing, alias3="function", alias4=container.escapeExpression;
 
-	  return alias4(((helper = (helper = helpers.firstName || (depth0 != null ? depth0.firstName : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"firstName","hash":{},"data":data}) : helper)))
+	  return "<div class=\"item\">"
+	    + alias4(((helper = (helper = helpers.firstName || (depth0 != null ? depth0.firstName : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"firstName","hash":{},"data":data}) : helper)))
 	    + " "
-	    + alias4(((helper = (helper = helpers.name || (depth0 != null ? depth0.name : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"name","hash":{},"data":data}) : helper)));
+	    + alias4(((helper = (helper = helpers.name || (depth0 != null ? depth0.name : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"name","hash":{},"data":data}) : helper)))
+	    + "</div>";
 	},"useData":true});
 
 /***/ },
@@ -18991,6 +18990,10 @@
 
 	var _detailList2 = _interopRequireDefault(_detailList);
 
+	var _CollectionView = __webpack_require__(37);
+
+	var _CollectionView2 = _interopRequireDefault(_CollectionView);
+
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	var detailView = _backbone2.default.View.extend({
@@ -19019,7 +19022,7 @@
 	    + alias4(((helper = (helper = helpers.firstName || (depth0 != null ? depth0.firstName : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"firstName","hash":{},"data":data}) : helper)))
 	    + "</li>\n    <p><strong>Email:</strong></p>\n<li id=\"email\">"
 	    + alias4(((helper = (helper = helpers.email || (depth0 != null ? depth0.email : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"email","hash":{},"data":data}) : helper)))
-	    + "</li>\n    <p>J<strong>ob:</strong></p>\n<li id=\"job\">"
+	    + "</li>\n    <p><strong>Job:</strong></p>\n<li id=\"job\">"
 	    + alias4(((helper = (helper = helpers.job || (depth0 != null ? depth0.job : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"job","hash":{},"data":data}) : helper)))
 	    + "</li>\n</ul>\n\n\n";
 	},"useData":true});
@@ -19033,6 +19036,26 @@
 	module.exports = (Handlebars["default"] || Handlebars).template({"compiler":[7,">= 4.0.0"],"main":function(container,depth0,helpers,partials,data) {
 	    return "\n<div id=\"list\">\n    <h4>Kontakte</h4>\n    <div class=\"listing\"></div>\n</div>\n<div id=\"details\"></div>\n<div id=\"addNew\"></div>\n";
 	},"useData":true});
+
+/***/ },
+/* 37 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	var _listview = __webpack_require__(29);
+
+	var _listview2 = _interopRequireDefault(_listview);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	var CollectionView = new _listview2.default();
+
+	exports.default = CollectionView;
 
 /***/ }
 /******/ ]);

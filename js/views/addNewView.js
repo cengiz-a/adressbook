@@ -1,12 +1,10 @@
 import Marionette from 'backbone.marionette';
 import AddingTemplate from '../../templates/addNew.handlebars';
-import CollectionView from './listview';
+
 import Model from '../models/model';
-import $ from 'jquery';
+import List from './CollectionView';
 
 
-var List = new CollectionView();
-var ListModel = new Model();
 
 var  addNewView = Marionette.View.extend({
 
@@ -41,22 +39,22 @@ var  addNewView = Marionette.View.extend({
 
         model = new Model();
 
-        var input = document.getElementById('form')
+        var input = document.getElementById('form');
 
-        var firstName = this.getUI('firstName');
+        var name = this.getUI('name');
+
 
         model.set({firstName: e.target.form[0].value});
         model.set({name: e.target.form[1].value});
         model.set({email: e.target.form[2].value});
         model.set({job: e.target.form[3].value});
 
-        console.log(firstName);
+        console.log(name);
+
 
         List.collection.add(model);
 
         input.reset();
-
-
 
     },
 

@@ -49,6 +49,7 @@ body {
     margin: 10px 10px 10px 10px;
     display: inline;
     box-shadow:  1px 1px 13px #4d4d00;
+
 }
 
 #addNew input{
@@ -76,5 +77,10 @@ h4 {
     font-family: Vollkorn serif;
     color: white;
     margin:10px auto;
-    padding-top: 5px;
+    padding-top: 10px;
+    text-decoration: underline;
+}
+
+ul {
+    list-style-type:katakana-iroha;
 }

@@ -8,8 +8,6 @@ import rootViewTemplate from '../../templates/rootViewTemplate.handlebars';
 
 
 
-
-
 var RootView = Marionette.View.extend({
 
     template: rootViewTemplate,
