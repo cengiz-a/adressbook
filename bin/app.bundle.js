@@ -17588,6 +17588,13 @@
 	        'input #job': 'changeJob',
 	        'click #add': 'add'
 	    },
+
+	    ui: {
+	        name: '#name',
+	        firstName: '#firstName',
+	        email: '#email',
+	        job: '#job'
+	    },
 	    /*
 	        modelEvents: {
 	            'change:name': 'actOnChange',
@@ -17596,15 +17603,25 @@
 	            'change:job': 'actOnChange'
 	        },*/
 
-	    add: function add(e) {
+	    add: function add(e, model) {
 	        e.preventDefault();
-	        List.collection.add(ListModel);
-	        console.log(e.target.form);
 
-	        ListModel.set({ firstName: (0, _jquery2.default)('#firstName') });
-	        ListModel.set({ name: e.target.value });
-	        ListModel.set({ email: e.target.value });
-	        ListModel.set({ job: e.target.value });
+	        model = new _model2.default();
+
+	        var input = document.getElementById('form');
+
+	        var firstName = this.getUI('firstName');
+
+	        model.set({ firstName: e.target.form[0].value });
+	        model.set({ name: e.target.form[1].value });
+	        model.set({ email: e.target.form[2].value });
+	        model.set({ job: e.target.form[3].value });
+
+	        console.log(firstName);
+
+	        List.collection.add(model);
+
+	        input.reset();
 	    },
 
 	    /*actOnChange: function () {
@@ -17635,7 +17652,7 @@
 	    + alias4(((helper = (helper = helpers.email || (depth0 != null ? depth0.email : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"email","hash":{},"data":data}) : helper)))
 	    + "\">\n<input title=\"job\" id=\"job\" type=\"text\" value=\""
 	    + alias4(((helper = (helper = helpers.job || (depth0 != null ? depth0.job : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"job","hash":{},"data":data}) : helper)))
-	    + "\">\n</form>\n<button form=\"form\" value=\"Submit\" id=\"add\">Add New</button>\n\n";
+	    + "\">\n</form>\n<button form=\"form\" value=\"Submit\" id=\"add\">Add</button>\n\n";
 	},"useData":true});
 
 /***/ },

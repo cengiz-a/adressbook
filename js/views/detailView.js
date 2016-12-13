@@ -6,6 +6,8 @@ var detailView = Marionette.View.extend({
 
     template: DetailViewTemplate,
 
+
+
     initialize() {
         this.render();
     },

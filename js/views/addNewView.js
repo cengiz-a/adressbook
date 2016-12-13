@@ -20,6 +20,13 @@ var  addNewView = Marionette.View.extend({
         'input #job': 'changeJob',
         'click #add': 'add'
     },
+
+    ui: {
+        name: '#name',
+        firstName: '#firstName',
+        email: '#email',
+        job: '#job'
+    },
 /*
     modelEvents: {
         'change:name': 'actOnChange',
@@ -29,15 +36,27 @@ var  addNewView = Marionette.View.extend({
     },*/
 
 
-    add: function (e) {
+    add: function (e, model) {
         e.preventDefault();
-        List.collection.add(ListModel);
-        console.log(e.target.form);
 
-        ListModel.set({firstName: $('#firstName')});
-        ListModel.set({name: e.target.value});
-        ListModel.set({email: e.target.value});
-        ListModel.set({job: e.target.value});
+        model = new Model();
+
+        var input = document.getElementById('form')
+
+        var firstName = this.getUI('firstName');
+
+        model.set({firstName: e.target.form[0].value});
+        model.set({name: e.target.form[1].value});
+        model.set({email: e.target.form[2].value});
+        model.set({job: e.target.form[3].value});
+
+        console.log(firstName);
+
+        List.collection.add(model);
+
+        input.reset();
+
+
 
     },
 
