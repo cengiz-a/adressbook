@@ -9,7 +9,9 @@ import List from '../collections/collection';
 var collectionList = new List();
 
 
+
 var listView = Marionette.CollectionView.extend({
+
 
     tagName: 'ul',
     className: 'list',
@@ -17,14 +19,7 @@ var listView = Marionette.CollectionView.extend({
 
     collection: collectionList,
 
-    childView: ListItemView,
-
-    initialize() {
-        this.render();
-    },
-
-
-
+    childView: ListItemView
 });
 
 

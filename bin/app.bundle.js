@@ -17504,15 +17504,15 @@
 
 	var _addNewView2 = _interopRequireDefault(_addNewView);
 
-	var _detailView = __webpack_require__(34);
+	var _detailView = __webpack_require__(35);
 
 	var _detailView2 = _interopRequireDefault(_detailView);
 
-	var _listview = __webpack_require__(29);
+	var _listview = __webpack_require__(31);
 
 	var _listview2 = _interopRequireDefault(_listview);
 
-	var _rootViewTemplate = __webpack_require__(36);
+	var _rootViewTemplate = __webpack_require__(37);
 
 	var _rootViewTemplate2 = _interopRequireDefault(_rootViewTemplate);
 
@@ -17528,16 +17528,12 @@
 	        addNew: '#addNew'
 	    },
 
-	    initialize: function initialize() {
-	        this.render();
-	    },
-
-	    onRender: function onRender() {
-
+	    onAttach: function onAttach() {
 	        this.showChildView('list', new _listview2.default());
-	        this.showChildView('details', new _detailView2.default());
 	        this.showChildView('addNew', new _addNewView2.default());
+	        this.showChildView('details', new _detailView2.default());
 	    }
+
 	});
 
 	exports.default = RootView;
@@ -17560,11 +17556,11 @@
 
 	var _addNew2 = _interopRequireDefault(_addNew);
 
-	var _model = __webpack_require__(33);
+	var _model = __webpack_require__(29);
 
 	var _model2 = _interopRequireDefault(_model);
 
-	var _CollectionView = __webpack_require__(37);
+	var _CollectionView = __webpack_require__(30);
 
 	var _CollectionView2 = _interopRequireDefault(_CollectionView);
 
@@ -17609,8 +17605,6 @@
 	        model.set({ name: e.target.form[1].value });
 	        model.set({ email: e.target.form[2].value });
 	        model.set({ job: e.target.form[3].value });
-
-	        console.log(name);
 
 	        _CollectionView2.default.collection.add(model);
 
@@ -18833,128 +18827,6 @@
 	    value: true
 	});
 
-	var _backbone = __webpack_require__(2);
-
-	var _backbone2 = _interopRequireDefault(_backbone);
-
-	var _ListItemView = __webpack_require__(30);
-
-	var _ListItemView2 = _interopRequireDefault(_ListItemView);
-
-	var _collection = __webpack_require__(32);
-
-	var _collection2 = _interopRequireDefault(_collection);
-
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-	var collectionList = new _collection2.default();
-
-	var listView = _backbone2.default.CollectionView.extend({
-
-	    tagName: 'ul',
-	    className: 'list',
-
-	    collection: collectionList,
-
-	    childView: _ListItemView2.default,
-
-	    initialize: function initialize() {
-	        this.render();
-	    }
-	});
-
-	exports.default = listView;
-
-/***/ },
-/* 30 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	Object.defineProperty(exports, "__esModule", {
-	    value: true
-	});
-
-	var _backbone = __webpack_require__(2);
-
-	var _backbone2 = _interopRequireDefault(_backbone);
-
-	var _ListItem = __webpack_require__(31);
-
-	var _ListItem2 = _interopRequireDefault(_ListItem);
-
-	var _detailView = __webpack_require__(34);
-
-	var _detailView2 = _interopRequireDefault(_detailView);
-
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-	var ListItemView = _backbone2.default.View.extend({
-
-	    tagName: 'li',
-	    template: _ListItem2.default,
-
-	    initialize: function initialize() {
-	        this.render();
-	    }
-	});
-
-	exports.default = ListItemView;
-
-/***/ },
-/* 31 */
-/***/ function(module, exports, __webpack_require__) {
-
-	var Handlebars = __webpack_require__(10);
-	function __default(obj) { return obj && (obj.__esModule ? obj["default"] : obj); }
-	module.exports = (Handlebars["default"] || Handlebars).template({"compiler":[7,">= 4.0.0"],"main":function(container,depth0,helpers,partials,data) {
-	    var helper, alias1=depth0 != null ? depth0 : {}, alias2=helpers.helperMissing, alias3="function", alias4=container.escapeExpression;
-
-	  return "<div class=\"item\">"
-	    + alias4(((helper = (helper = helpers.firstName || (depth0 != null ? depth0.firstName : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"firstName","hash":{},"data":data}) : helper)))
-	    + " "
-	    + alias4(((helper = (helper = helpers.name || (depth0 != null ? depth0.name : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"name","hash":{},"data":data}) : helper)))
-	    + "</div>";
-	},"useData":true});
-
-/***/ },
-/* 32 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	Object.defineProperty(exports, "__esModule", {
-	    value: true
-	});
-
-	var _backbone = __webpack_require__(3);
-
-	var _backbone2 = _interopRequireDefault(_backbone);
-
-	var _model = __webpack_require__(33);
-
-	var _model2 = _interopRequireDefault(_model);
-
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-	var list = _backbone2.default.Collection.extend({
-
-	    model: _model2.default
-
-	});
-
-	exports.default = list;
-
-/***/ },
-/* 33 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	Object.defineProperty(exports, "__esModule", {
-	    value: true
-	});
-
 	var _backbone = __webpack_require__(3);
 
 	var _backbone2 = _interopRequireDefault(_backbone);
@@ -18973,7 +18845,27 @@
 	exports.default = myModel;
 
 /***/ },
-/* 34 */
+/* 30 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	var _listview = __webpack_require__(31);
+
+	var _listview2 = _interopRequireDefault(_listview);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	var CollectionView = new _listview2.default();
+
+	exports.default = CollectionView;
+
+/***/ },
+/* 31 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -18986,29 +18878,157 @@
 
 	var _backbone2 = _interopRequireDefault(_backbone);
 
-	var _detailList = __webpack_require__(35);
+	var _ListItemView = __webpack_require__(32);
+
+	var _ListItemView2 = _interopRequireDefault(_ListItemView);
+
+	var _collection = __webpack_require__(34);
+
+	var _collection2 = _interopRequireDefault(_collection);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	var collectionList = new _collection2.default();
+
+	var listView = _backbone2.default.CollectionView.extend({
+
+	    tagName: 'ul',
+	    className: 'list',
+
+	    collection: collectionList,
+
+	    childView: _ListItemView2.default
+	});
+
+	exports.default = listView;
+
+/***/ },
+/* 32 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+
+	var _backbone = __webpack_require__(2);
+
+	var _backbone2 = _interopRequireDefault(_backbone);
+
+	var _ListItem = __webpack_require__(33);
+
+	var _ListItem2 = _interopRequireDefault(_ListItem);
+
+	var _backbone3 = __webpack_require__(6);
+
+	var _backbone4 = _interopRequireDefault(_backbone3);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	var myChannel = _backbone4.default.channel('Detail');
+
+	var ListItemView = _backbone2.default.View.extend({
+
+	    tagName: 'li',
+	    template: _ListItem2.default,
+
+	    events: {
+	        'click .item': 'selectItem'
+	    },
+
+	    selectItem: function selectItem() {
+	        myChannel.on('show', function () {
+	            return this.model;
+	        });
+	        console.log(this.listenTo(myChannel.trigger('show')));
+	    }
+	});
+
+	exports.default = ListItemView;
+
+/***/ },
+/* 33 */
+/***/ function(module, exports, __webpack_require__) {
+
+	var Handlebars = __webpack_require__(10);
+	function __default(obj) { return obj && (obj.__esModule ? obj["default"] : obj); }
+	module.exports = (Handlebars["default"] || Handlebars).template({"compiler":[7,">= 4.0.0"],"main":function(container,depth0,helpers,partials,data) {
+	    var helper, alias1=depth0 != null ? depth0 : {}, alias2=helpers.helperMissing, alias3="function", alias4=container.escapeExpression;
+
+	  return "<div class=\"item\">"
+	    + alias4(((helper = (helper = helpers.firstName || (depth0 != null ? depth0.firstName : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"firstName","hash":{},"data":data}) : helper)))
+	    + " "
+	    + alias4(((helper = (helper = helpers.name || (depth0 != null ? depth0.name : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"name","hash":{},"data":data}) : helper)))
+	    + "</div>";
+	},"useData":true});
+
+/***/ },
+/* 34 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+
+	var _backbone = __webpack_require__(3);
+
+	var _backbone2 = _interopRequireDefault(_backbone);
+
+	var _model = __webpack_require__(29);
+
+	var _model2 = _interopRequireDefault(_model);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	var list = _backbone2.default.Collection.extend({
+
+	    model: _model2.default
+
+	});
+
+	exports.default = list;
+
+/***/ },
+/* 35 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+
+	var _backbone = __webpack_require__(2);
+
+	var _backbone2 = _interopRequireDefault(_backbone);
+
+	var _detailList = __webpack_require__(36);
 
 	var _detailList2 = _interopRequireDefault(_detailList);
 
-	var _CollectionView = __webpack_require__(37);
+	var _backbone3 = __webpack_require__(6);
 
-	var _CollectionView2 = _interopRequireDefault(_CollectionView);
+	var _backbone4 = _interopRequireDefault(_backbone3);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	var myChannel = _backbone4.default.channel('Detail');
 
 	var detailView = _backbone2.default.View.extend({
 
 	    template: _detailList2.default,
 
-	    initialize: function initialize() {
-	        this.render();
-	    }
+	    model: myChannel.trigger('show')
+
 	});
 
 	exports.default = detailView;
 
 /***/ },
-/* 35 */
+/* 36 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var Handlebars = __webpack_require__(10);
@@ -19024,11 +19044,11 @@
 	    + alias4(((helper = (helper = helpers.email || (depth0 != null ? depth0.email : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"email","hash":{},"data":data}) : helper)))
 	    + "</li>\n    <p><strong>Job:</strong></p>\n<li id=\"job\">"
 	    + alias4(((helper = (helper = helpers.job || (depth0 != null ? depth0.job : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"job","hash":{},"data":data}) : helper)))
-	    + "</li>\n</ul>\n\n\n";
+	    + "</li>\n</ul>\n\n";
 	},"useData":true});
 
 /***/ },
-/* 36 */
+/* 37 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var Handlebars = __webpack_require__(10);
@@ -19036,26 +19056,6 @@
 	module.exports = (Handlebars["default"] || Handlebars).template({"compiler":[7,">= 4.0.0"],"main":function(container,depth0,helpers,partials,data) {
 	    return "\n<div id=\"list\">\n    <h4>Kontakte</h4>\n    <div class=\"listing\"></div>\n</div>\n<div id=\"details\"></div>\n<div id=\"addNew\"></div>\n";
 	},"useData":true});
-
-/***/ },
-/* 37 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-
-	var _listview = __webpack_require__(29);
-
-	var _listview2 = _interopRequireDefault(_listview);
-
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-	var CollectionView = new _listview2.default();
-
-	exports.default = CollectionView;
 
 /***/ }
 /******/ ]);

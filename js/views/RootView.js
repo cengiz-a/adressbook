@@ -7,7 +7,6 @@ import rootViewTemplate from '../../templates/rootViewTemplate.handlebars';
 
 
 
-
 var RootView = Marionette.View.extend({
 
     template: rootViewTemplate,
@@ -18,17 +17,20 @@ var RootView = Marionette.View.extend({
         addNew: '#addNew'
     },
 
-    initialize: function () {
-        this.render();
+
+
+    onAttach: function () {
+        this.showChildView('list', new ListView());
+        this.showChildView('addNew', new AddNewView());
+        this.showChildView('details', new DetailView());
     },
 
-    onRender: function() {
 
-        this.showChildView('list', new ListView());
-        this.showChildView('details', new DetailView());
-        this.showChildView('addNew', new AddNewView());
 
-    }
+
+
+
+
 });
 
 
