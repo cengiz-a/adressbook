@@ -18938,10 +18938,7 @@
 	    },
 
 	    selectItem: function selectItem() {
-	        myChannel.on('show', function () {
-	            return this.model;
-	        });
-	        console.log(this.listenTo(myChannel.trigger('show')));
+	        myChannel.trigger('show', this.model);
 	    }
 	});
 
@@ -19021,8 +19018,12 @@
 
 	    template: _detailList2.default,
 
-	    model: myChannel.trigger('show')
-
+	    intialize: function intialize() {
+	        myChannel.on('show', function (model) {
+	            this.model = model;
+	            this.render();
+	        });
+	    }
 	});
 
 	exports.default = detailView;
