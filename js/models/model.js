@@ -6,6 +6,8 @@ const myModel = backbone.Model.extend({
     default: {
         firstName: '',
         name: '',
+        tel: '',
+        ranking: '',
         email: '',
         job: '',
     }

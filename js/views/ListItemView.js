@@ -16,8 +16,7 @@ var ListItemView = Marionette.View.extend({
 
     selectItem() {
         myChannel.trigger('show', this.model);
-    },
-    
+    }
 
 });
 

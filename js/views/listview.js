@@ -20,6 +20,7 @@ var listView = Marionette.CollectionView.extend({
     collection: collectionList,
 
     childView: ListItemView
+
 });
 
 

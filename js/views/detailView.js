@@ -13,14 +13,14 @@ var detailView = Marionette.View.extend({
 
     template: detailTemplate,
 
-    intialize () {
-    	myChannel.on('show', function (model) {
-    		this.model = model;
-    		this.render();
-    	});
-    	
-    },
+    initialize () {
 
+
+        this.listenTo(myChannel, 'show', function (model) {
+            this.model = model;
+            this.render();
+        });
+    }
 });
 
 

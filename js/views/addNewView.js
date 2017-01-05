@@ -45,8 +45,10 @@ var  addNewView = Marionette.View.extend({
 
         model.set({firstName: e.target.form[0].value});
         model.set({name: e.target.form[1].value});
-        model.set({email: e.target.form[2].value});
-        model.set({job: e.target.form[3].value});
+        model.set({tel: e.target.form[2].value});
+        model.set({ranking: e.target.form[3].value});
+        model.set({email: e.target.form[4].value});
+        model.set({job: e.target.form[5].value});
 
         List.collection.add(model);
 

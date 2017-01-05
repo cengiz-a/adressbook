@@ -17603,8 +17603,10 @@
 
 	        model.set({ firstName: e.target.form[0].value });
 	        model.set({ name: e.target.form[1].value });
-	        model.set({ email: e.target.form[2].value });
-	        model.set({ job: e.target.form[3].value });
+	        model.set({ tel: e.target.form[2].value });
+	        model.set({ ranking: e.target.form[3].value });
+	        model.set({ email: e.target.form[4].value });
+	        model.set({ job: e.target.form[5].value });
 
 	        _CollectionView2.default.collection.add(model);
 
@@ -17629,17 +17631,7 @@
 	var Handlebars = __webpack_require__(10);
 	function __default(obj) { return obj && (obj.__esModule ? obj["default"] : obj); }
 	module.exports = (Handlebars["default"] || Handlebars).template({"compiler":[7,">= 4.0.0"],"main":function(container,depth0,helpers,partials,data) {
-	    var helper, alias1=depth0 != null ? depth0 : {}, alias2=helpers.helperMissing, alias3="function", alias4=container.escapeExpression;
-
-	  return "<form id=\"form\">\n<input title=\"firstName\" id=\"firstName\" type=\"text\" value=\""
-	    + alias4(((helper = (helper = helpers.firstName || (depth0 != null ? depth0.firstName : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"firstName","hash":{},"data":data}) : helper)))
-	    + "\">\n<input title=\"name\" id=\"name\" type=\"text\" value=\""
-	    + alias4(((helper = (helper = helpers.name || (depth0 != null ? depth0.name : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"name","hash":{},"data":data}) : helper)))
-	    + "\">\n<input title=\"email\" id=\"email\" type=\"text\" value=\""
-	    + alias4(((helper = (helper = helpers.email || (depth0 != null ? depth0.email : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"email","hash":{},"data":data}) : helper)))
-	    + "\">\n<input title=\"job\" id=\"job\" type=\"text\" value=\""
-	    + alias4(((helper = (helper = helpers.job || (depth0 != null ? depth0.job : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"job","hash":{},"data":data}) : helper)))
-	    + "\">\n</form>\n<button form=\"form\" value=\"Submit\" id=\"add\">Add</button>\n\n";
+	    return "<form id=\"form\">\n<input title=\"firstName\" id=\"firstName\" type=\"text\" placeholder=\"Vorname\" autofocus>\n<input title=\"name\" id=\"name\" type=\"text\" placeholder=\"Name\">\n<input title=\"tel\" id=\"tel\" type=\"number\" placeholder=\"Telefon\">\n<input title=\"ranking\" id=\"ranking\" type=\"text\" placeholder=\"Ranking\">\n<input title=\"email\" id=\"email\" type=\"email\" placeholder=\"Email\">\n<input title=\"job\" id=\"job\" type=\"text\" placeholder=\"Job\">\n</form>\n<button form=\"form\" value=\"Submit\" id=\"add\">Add</button>\n\n";
 	},"useData":true});
 
 /***/ },
@@ -18837,6 +18829,8 @@
 	    default: {
 	        firstName: '',
 	        name: '',
+	        tel: '',
+	        ranking: '',
 	        email: '',
 	        job: ''
 	    }
@@ -18898,6 +18892,7 @@
 	    collection: collectionList,
 
 	    childView: _ListItemView2.default
+
 	});
 
 	exports.default = listView;
@@ -19018,8 +19013,9 @@
 
 	    template: _detailList2.default,
 
-	    intialize: function intialize() {
-	        myChannel.on('show', function (model) {
+	    initialize: function initialize() {
+
+	        this.listenTo(myChannel, 'show', function (model) {
 	            this.model = model;
 	            this.render();
 	        });
@@ -19037,15 +19033,19 @@
 	module.exports = (Handlebars["default"] || Handlebars).template({"compiler":[7,">= 4.0.0"],"main":function(container,depth0,helpers,partials,data) {
 	    var helper, alias1=depth0 != null ? depth0 : {}, alias2=helpers.helperMissing, alias3="function", alias4=container.escapeExpression;
 
-	  return "\n<ul>\n    <p><strong>Name:</strong></p>\n<li id=\"name\">"
+	  return "\n<div class=\"detailatts\">\n    <p class=\"Details\">Details</p>\n    <p>Name, Vorname: "
 	    + alias4(((helper = (helper = helpers.name || (depth0 != null ? depth0.name : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"name","hash":{},"data":data}) : helper)))
-	    + "</li>\n    <p><strong>Vorname:</strong></p>\n<li id=\"firstName\">"
+	    + " "
 	    + alias4(((helper = (helper = helpers.firstName || (depth0 != null ? depth0.firstName : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"firstName","hash":{},"data":data}) : helper)))
-	    + "</li>\n    <p><strong>Email:</strong></p>\n<li id=\"email\">"
+	    + "</p>\n\n    <p>Telefon: "
+	    + alias4(((helper = (helper = helpers.tel || (depth0 != null ? depth0.tel : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"tel","hash":{},"data":data}) : helper)))
+	    + "</p>\n\n    <p>CS GO Ranking: "
+	    + alias4(((helper = (helper = helpers.ranking || (depth0 != null ? depth0.ranking : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"ranking","hash":{},"data":data}) : helper)))
+	    + "</p>\n\n    <p>Email: "
 	    + alias4(((helper = (helper = helpers.email || (depth0 != null ? depth0.email : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"email","hash":{},"data":data}) : helper)))
-	    + "</li>\n    <p><strong>Job:</strong></p>\n<li id=\"job\">"
+	    + "</p>\n\n    <p>Job: "
 	    + alias4(((helper = (helper = helpers.job || (depth0 != null ? depth0.job : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"job","hash":{},"data":data}) : helper)))
-	    + "</li>\n</ul>\n\n";
+	    + "</p>\n</div>\n\n";
 	},"useData":true});
 
 /***/ },
