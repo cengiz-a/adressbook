@@ -51,12 +51,7 @@ var  addNewView = Marionette.View.extend({
         this.render();
     },
 
-
 });
-
-
-
-
 
 export default addNewView;
 

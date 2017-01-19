@@ -17,22 +17,12 @@ var RootView = Marionette.View.extend({
         addNew: '#addNew'
     },
 
-
-
     onAttach: function () {
         this.showChildView('list', new ListView());
         this.showChildView('addNew', new AddNewView());
         this.showChildView('details', new DetailView());
     },
 
-
-
-
-
-
-
 });
-
-
 
 export default RootView;
