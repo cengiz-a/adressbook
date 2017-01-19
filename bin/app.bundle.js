@@ -17556,6 +17556,10 @@
 
 	var _addNew2 = _interopRequireDefault(_addNew);
 
+	var _jquery = __webpack_require__(5);
+
+	var _jquery2 = _interopRequireDefault(_jquery);
+
 	var _model = __webpack_require__(29);
 
 	var _model2 = _interopRequireDefault(_model);
@@ -17570,27 +17574,13 @@
 
 	    template: _addNew2.default,
 
-	    events: {
-	        'input #name': 'changeName',
-	        'input #firstName': 'changeFirstName',
-	        'input #email': 'changeEmail',
-	        'input #job': 'changeJob',
-	        'click #add': 'add'
+	    ui: {
+	        add: '#add'
 	    },
 
-	    ui: {
-	        name: '#name',
-	        firstName: '#firstName',
-	        email: '#email',
-	        job: '#job'
+	    events: {
+	        'click @ui.add': 'add'
 	    },
-	    /*
-	        modelEvents: {
-	            'change:name': 'actOnChange',
-	            'change:firstName': 'actOnChange',
-	            'change:email': 'actOnChange',
-	            'change:job': 'actOnChange'
-	        },*/
 
 	    add: function add(e, model) {
 	        e.preventDefault();
@@ -17599,23 +17589,28 @@
 
 	        var input = document.getElementById('form');
 
-	        var name = this.getUI('name');
+	        var name = (0, _jquery2.default)('input#name').val();
+	        var firstName = (0, _jquery2.default)('input#firstName').val();
+	        var tel = (0, _jquery2.default)('input#tel').val();
+	        var ranking = (0, _jquery2.default)('input#ranking').val();
+	        var email = (0, _jquery2.default)('input#email').val();
+	        var job = (0, _jquery2.default)('input#job').val();
 
-	        model.set({ firstName: e.target.form[0].value });
-	        model.set({ name: e.target.form[1].value });
-	        model.set({ tel: e.target.form[2].value });
-	        model.set({ ranking: e.target.form[3].value });
-	        model.set({ email: e.target.form[4].value });
-	        model.set({ job: e.target.form[5].value });
+	        if (name && firstName && tel) {
+	            model.set({ firstName: firstName });
+	            model.set({ name: name });
+	            model.set({ tel: tel });
+	            model.set({ ranking: ranking });
+	            model.set({ email: email });
+	            model.set({ job: job });
 
-	        _CollectionView2.default.collection.add(model);
+	            _CollectionView2.default.collection.add(model);
+	        } else {
+	            alert("Pflichtfelder ausfüllen (Vorname, Name, Telefon)");
+	        }
 
 	        input.reset();
 	    },
-
-	    /*actOnChange: function () {
-	        this.render();
-	    },*/
 
 	    initialize: function initialize() {
 	        this.render();
@@ -17631,7 +17626,7 @@
 	var Handlebars = __webpack_require__(10);
 	function __default(obj) { return obj && (obj.__esModule ? obj["default"] : obj); }
 	module.exports = (Handlebars["default"] || Handlebars).template({"compiler":[7,">= 4.0.0"],"main":function(container,depth0,helpers,partials,data) {
-	    return "<form id=\"form\">\n<input title=\"firstName\" id=\"firstName\" type=\"text\" placeholder=\"Vorname\" autofocus>\n<input title=\"name\" id=\"name\" type=\"text\" placeholder=\"Name\">\n<input title=\"tel\" id=\"tel\" type=\"number\" placeholder=\"Telefon\">\n<input title=\"ranking\" id=\"ranking\" type=\"text\" placeholder=\"Ranking\">\n<input title=\"email\" id=\"email\" type=\"email\" placeholder=\"Email\">\n<input title=\"job\" id=\"job\" type=\"text\" placeholder=\"Job\">\n</form>\n<button form=\"form\" value=\"Submit\" id=\"add\">Add</button>\n\n";
+	    return "<form id=\"form\">\n<input title=\"firstName\" id=\"firstName\" type=\"text\" placeholder=\"Vorname (Pflichtfeld)\" autofocus value=\"\">\n<input title=\"name\" id=\"name\" type=\"text\" placeholder=\"Name (Pflichtfeld)\" value=\"\">\n<input title=\"tel\" id=\"tel\" type=\"number\" placeholder=\"Telefon (Pflichtfeld)\" value=\"\">\n<input title=\"ranking\" id=\"ranking\" type=\"text\" placeholder=\"Ranking\" value=\"\">\n<input title=\"email\" id=\"email\" type=\"email\" placeholder=\"Email\" value=\"\">\n<input title=\"job\" id=\"job\" type=\"text\" placeholder=\"Job\" value=\"\">\n</form>\n<button form=\"form\" value=\"Submit\" id=\"add\">Add</button>\n\n";
 	},"useData":true});
 
 /***/ },

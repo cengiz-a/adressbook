@@ -17,6 +17,7 @@ var listView = Marionette.CollectionView.extend({
     className: 'list',
 
 
+
     collection: collectionList,
 
     childView: ListItemView
