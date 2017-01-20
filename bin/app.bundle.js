@@ -17583,6 +17583,7 @@
 	    },
 
 	    add: function add(e, model) {
+
 	        e.preventDefault();
 
 	        model = new _model2.default();
@@ -17596,7 +17597,9 @@
 	        var email = (0, _jquery2.default)('input#email').val();
 	        var job = (0, _jquery2.default)('input#job').val();
 
-	        if (name && firstName && tel) {
+	        var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+
+	        if (name && firstName && tel && re.test(email) === true) {
 	            model.set({ firstName: firstName });
 	            model.set({ name: name });
 	            model.set({ tel: tel });
@@ -17605,13 +17608,12 @@
 	            model.set({ job: job });
 
 	            _CollectionView2.default.collection.add(model);
+
+	            input.reset();
 	        } else {
-	            alert("Pflichtfelder ausfüllen (Vorname, Name, Telefon)");
+	            alert("Alter, füll richtig aus!");
 	        }
-
-	        input.reset();
 	    },
-
 	    initialize: function initialize() {
 	        this.render();
 	    }

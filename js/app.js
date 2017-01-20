@@ -1,6 +1,6 @@
 
 import Marionette from 'backbone.marionette';
-import RootView from '../views/RootView.js';
+import RootView from './views/RootView.js';
 
 
 const App = Marionette.Application.extend({
@@ -16,4 +16,3 @@ const App = Marionette.Application.extend({
 
 
 export default App;
-
