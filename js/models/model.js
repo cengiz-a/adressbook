@@ -4,12 +4,11 @@ import backbone from 'backbone';
 
 const myModel = backbone.Model.extend({
     default: {
+        id: '',
         firstName: '',
         name: '',
         tel: '',
-        ranking: '',
         email: '',
-        job: '',
     }
 });
 

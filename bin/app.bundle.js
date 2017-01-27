@@ -17575,11 +17575,13 @@
 	    template: _addNew2.default,
 
 	    ui: {
-	        add: '#add'
+	        add: '#add',
+	        deleteContact: '#deleteContact'
 	    },
 
 	    events: {
-	        'click @ui.add': 'add'
+	        'click @ui.add': 'add',
+	        'click @ui.deleteContact': 'deleteContact'
 	    },
 
 	    add: function add(e, model) {
@@ -17589,29 +17591,44 @@
 	        model = new _model2.default();
 
 	        var input = document.getElementById('form');
-
+	        var id = (0, _jquery2.default)('input#id').val();
 	        var name = (0, _jquery2.default)('input#name').val();
 	        var firstName = (0, _jquery2.default)('input#firstName').val();
 	        var tel = (0, _jquery2.default)('input#tel').val();
-	        var ranking = (0, _jquery2.default)('input#ranking').val();
 	        var email = (0, _jquery2.default)('input#email').val();
-	        var job = (0, _jquery2.default)('input#job').val();
 
 	        var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 
 	        if (name && firstName && tel && re.test(email) === true) {
+	            // || List.collection.model.ranking === ranking) {
+	            model.set({ id: id });
 	            model.set({ firstName: firstName });
 	            model.set({ name: name });
 	            model.set({ tel: tel });
-	            model.set({ ranking: ranking });
 	            model.set({ email: email });
-	            model.set({ job: job });
 
 	            _CollectionView2.default.collection.add(model);
 
 	            input.reset();
 	        } else {
-	            alert("Alter, füll richtig aus!");
+	            alert("Pflichtfelder ausfüllen und Email richtig eingeben!");
+	        }
+	    },
+	    deleteContact: function deleteContact(e) {
+	        e.preventDefault();
+	        // hier fehlt noch einiges!
+	        for (var i = 0; i <= _CollectionView2.default.collection.length; i++) {
+	            var containsEmail = _CollectionView2.default.collection.where({ email: _CollectionView2.default.collection.get(1) });
+	            var containsName = _CollectionView2.default.collection.where({ name: _CollectionView2.default.collection.model[i] });
+	            var containFirstName = _CollectionView2.default.collection.where({ firstName: _CollectionView2.default.collection.model[i] });
+	            var containsTel = _CollectionView2.default.collection.where({ tel: _CollectionView2.default.collection.model[i] });
+
+	            if (containsEmail > 2 || containsName > 2 || containFirstName > 2 || containsTel > 2) {
+	                console.log("nicht ok");
+	                console.log(containsEmail.length);
+	            } else {
+	                console.log("ok");
+	            }
 	        }
 	    },
 	    initialize: function initialize() {
@@ -17628,7 +17645,7 @@
 	var Handlebars = __webpack_require__(10);
 	function __default(obj) { return obj && (obj.__esModule ? obj["default"] : obj); }
 	module.exports = (Handlebars["default"] || Handlebars).template({"compiler":[7,">= 4.0.0"],"main":function(container,depth0,helpers,partials,data) {
-	    return "<form id=\"form\">\n<input title=\"firstName\" id=\"firstName\" type=\"text\" placeholder=\"Vorname (Pflichtfeld)\" autofocus value=\"\">\n<input title=\"name\" id=\"name\" type=\"text\" placeholder=\"Name (Pflichtfeld)\" value=\"\">\n<input title=\"tel\" id=\"tel\" type=\"number\" placeholder=\"Telefon (Pflichtfeld)\" value=\"\">\n<input title=\"ranking\" id=\"ranking\" type=\"text\" placeholder=\"Ranking\" value=\"\">\n<input title=\"email\" id=\"email\" type=\"email\" placeholder=\"Email\" value=\"\">\n<input title=\"job\" id=\"job\" type=\"text\" placeholder=\"Job\" value=\"\">\n</form>\n<button form=\"form\" value=\"Submit\" id=\"add\">Add</button>\n\n";
+	    return "<form id=\"form\">\n<input title=\"id\" id=\"id\" type=\"id\" placeholder=\"id (Pflichtfeld, ganze Zahl)\" autofocus value=\"\">\n<input title=\"firstName\" id=\"firstName\" type=\"text\" placeholder=\"Vorname (Pflichtfeld)\" autofocus value=\"\">\n<input title=\"name\" id=\"name\" type=\"text\" placeholder=\"Name (Pflichtfeld)\" value=\"\">\n<input title=\"tel\" id=\"tel\" type=\"number\" placeholder=\"Telefon (Pflichtfeld)\" value=\"\">\n<input title=\"email\" id=\"email\" type=\"email\" placeholder=\"Email\" value=\"\">\n</form>\n<button form=\"form\" value=\"Submit\" id=\"add\">Add</button>\n\n<button form=\"form\" value=\"Submit\" id=\"deleteContact\">Delete Contact</button>";
 	},"useData":true});
 
 /***/ },
@@ -18824,12 +18841,11 @@
 
 	var myModel = _backbone2.default.Model.extend({
 	    default: {
+	        id: '',
 	        firstName: '',
 	        name: '',
 	        tel: '',
-	        ranking: '',
-	        email: '',
-	        job: ''
+	        email: ''
 	    }
 	});
 
@@ -18946,6 +18962,8 @@
 	    var helper, alias1=depth0 != null ? depth0 : {}, alias2=helpers.helperMissing, alias3="function", alias4=container.escapeExpression;
 
 	  return "<div class=\"item\">"
+	    + alias4(((helper = (helper = helpers.id || (depth0 != null ? depth0.id : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"id","hash":{},"data":data}) : helper)))
+	    + ": "
 	    + alias4(((helper = (helper = helpers.firstName || (depth0 != null ? depth0.firstName : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"firstName","hash":{},"data":data}) : helper)))
 	    + " "
 	    + alias4(((helper = (helper = helpers.name || (depth0 != null ? depth0.name : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"name","hash":{},"data":data}) : helper)))
@@ -19034,14 +19052,10 @@
 	    + alias4(((helper = (helper = helpers.name || (depth0 != null ? depth0.name : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"name","hash":{},"data":data}) : helper)))
 	    + " "
 	    + alias4(((helper = (helper = helpers.firstName || (depth0 != null ? depth0.firstName : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"firstName","hash":{},"data":data}) : helper)))
-	    + "</p>\n\n    <p>Telefon: "
+	    + "</p>\n    <p>Telefon: "
 	    + alias4(((helper = (helper = helpers.tel || (depth0 != null ? depth0.tel : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"tel","hash":{},"data":data}) : helper)))
-	    + "</p>\n\n    <p>CS GO Ranking: "
-	    + alias4(((helper = (helper = helpers.ranking || (depth0 != null ? depth0.ranking : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"ranking","hash":{},"data":data}) : helper)))
-	    + "</p>\n\n    <p>Email: "
+	    + "</p>\n    <p>Email: "
 	    + alias4(((helper = (helper = helpers.email || (depth0 != null ? depth0.email : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"email","hash":{},"data":data}) : helper)))
-	    + "</p>\n\n    <p>Job: "
-	    + alias4(((helper = (helper = helpers.job || (depth0 != null ? depth0.job : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"job","hash":{},"data":data}) : helper)))
 	    + "</p>\n</div>\n\n";
 	},"useData":true});
 

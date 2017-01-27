@@ -14,7 +14,7 @@ module.exports = function(config) {
 
     // list of files / patterns to load in the browser
     files: [
-        'js/app.js',
+        'initialize.js',
         'test/test.js'
     ],
 
@@ -22,19 +22,17 @@ module.exports = function(config) {
     exclude: [
     ],
 
-    // preprocess matching files before serving them to the browser
-    // available preprocessors: https://npmjs.org/browse/keyword/karma-preprocessor
+    // preprocess matching files before serving them to the browsery
     preprocessors: {
-      './test/test.js': ['webpack', 'babel', 'coverage'],
-      './js/**/*.js': ['webpack', 'babel'],
-
-
+      'initialize.js': ['webpack', 'babel'],
+      'js/**/*.js': ['webpack', 'babel'],
+      'test/test.js': ['webpack', 'babel'],
     },
 
     // test results reporter to use
     // possible values: 'dots', 'progress'
     // available reporters: https://npmjs.org/browse/keyword/karma-reporter
-    reporters: ['progress', 'coverage'],
+    reporters: ['progress'],
 
     // web server port
     port: 9876,
@@ -67,7 +65,7 @@ module.exports = function(config) {
     plugins: ['karma-webpack',
               'karma-jasmine',
               'karma-phantomjs-launcher',
-              'karma-chrome-launcher', 'karma-coverage',
+              'karma-chrome-launcher',
               'karma-babel-preprocessor']
   })
 }
